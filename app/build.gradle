@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.8.10'
 }
 
 android {
@@ -18,6 +20,10 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+        buildConfigField "String", "BASE_URL", "\"https://cr-test-ribu2uaqea-ey.a.run.app/\""
+        buildConfigField "String", "APP_NAME", "\"cuton\""
+        buildConfigField "int", "BUILD_NUMBER", "36"
     }
 
     buildTypes {
@@ -49,7 +55,9 @@ android {
 dependencies {
     implementation 'androidx.core:core-ktx:1.9.0'
 
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0'
+    def lifecycle_version = '2.6.0'
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
 
     implementation platform('androidx.compose:compose-bom:2023.01.00')
 
@@ -58,6 +66,26 @@ dependencies {
     implementation "androidx.compose.ui:ui"
     implementation "androidx.compose.ui:ui-tooling-preview"
     implementation 'androidx.compose.material:material'
+
+    implementation "androidx.navigation:navigation-compose:2.5.3"
+
+    implementation "io.coil-kt:coil-compose:2.2.2"
+
+    def dagger_version = '2.45'
+    implementation "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
+
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0'
+
+    implementation platform('com.squareup.okhttp3:okhttp-bom:4.10.0')
+
+    implementation 'com.squareup.okhttp3:okhttp'
+    implementation 'com.squareup.okhttp3:logging-interceptor'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0'
 
     testImplementation 'junit:junit:4.13.2'
 

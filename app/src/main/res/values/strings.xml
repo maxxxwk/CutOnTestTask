@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">Test Task</string>
+    <string name="app_name">CutOn</string>
+    <string name="no_internet_connection_error">Відсутнє Інтернет з\'єднання</string>
+    <string name="unknown_error">Невідома помилка…</string>
+    <string name="incorrect_login_or_password_error">Неправильний логін або пароль</string>
+    <string name="retry_message">Натисніть щоб спробувати знову</string>
+    <string name="update_available_message">Доступна нова версія додатку</string>
+    <string name="update_needed_message">Ця версія додатку застаріла.</string>
+    <string name="auth_screen_title">Вхід</string>
+    <string name="phone_field_hint">Телефон</string>
+    <string name="password_field_hint">Пароль</string>
+    <string name="remember_me_text">Запам\'ятати мене</string>
+    <string name="forgot_password_text">Забули пароль?</string>
+    <string name="login_button_text">Логін</string>
+    <string name="update_now_text">Оновити зараз!</string>
+    <string name="no_account_text">Немає аккаунта?</string>
+    <string name="register_text">Зареєструватися</string>
+    <string name="logout_screen_title">Бажаєте вийти з додатку?</string>
+    <string name="no_button_text">Ні</string>
+    <string name="yes_button_text">Так</string>
+    <string name="empty_login_or_password_error">Введіть телефон та пароль</string>
+    <string name="menu_title">Меню</string>
+    <string name="brands_catalog_title">Каталог брендів</string>
 </resources>
