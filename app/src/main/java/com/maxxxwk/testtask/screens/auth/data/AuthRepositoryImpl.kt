@@ -2,7 +2,7 @@ package com.maxxxwk.testtask.screens.auth.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.kotlin.result.wrapResult
-import com.maxxxwk.testtask.network.ApiService
+import com.maxxxwk.network.api.NetworkApi
 import com.maxxxwk.testtask.network.auth.AuthTokenManager
 import com.maxxxwk.testtask.screens.auth.domain.AuthRepository
 import com.maxxxwk.testtask.screens.auth.domain.models.Credentials
@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 class AuthRepositoryImpl @Inject constructor(
     private val tokenManager: AuthTokenManager,
-    private val apiService: ApiService,
+    private val apiService: NetworkApi,
     private val dispatchersProvider: DispatchersProvider
 ) : AuthRepository {
     override suspend fun login(

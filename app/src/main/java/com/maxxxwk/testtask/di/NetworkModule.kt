@@ -1,58 +1,34 @@
 package com.maxxxwk.testtask.di
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
-import com.maxxxwk.testtask.BuildConfig
-import com.maxxxwk.testtask.network.ApiService
-import com.maxxxwk.testtask.network.auth.AuthInterceptor
-import com.maxxxwk.testtask.network.url.DynamicURLInterceptor
+import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
+import com.maxxxwk.network.api.NetworkApi
+import com.maxxxwk.network.api.NetworkComponentHolder
+import com.maxxxwk.network.api.NetworkDependencies
+import com.maxxxwk.network.api.NetworkSettingsManager
+import com.maxxxwk.testtask.network.auth.AuthTokenManager
+import com.maxxxwk.testtask.network.url.DynamicURLManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
-import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter
-import retrofit2.Retrofit
 
 @Module
 class NetworkModule {
-    @Singleton
-    @Provides
-    fun provideConverterFactory(): Converter.Factory {
-        val json = Json { ignoreUnknownKeys = true }
-        return json.asConverterFactory("application/json".toMediaType())
-    }
-
     @Provides
     @Singleton
-    fun provideOkHttpClient(
-        authInterceptor: AuthInterceptor,
-        dynamicURLInterceptor: DynamicURLInterceptor
-    ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(authInterceptor)
-            .addInterceptor(dynamicURLInterceptor)
-            .addInterceptor(
-                HttpLoggingInterceptor().apply {
-                    level = HttpLoggingInterceptor.Level.BODY
+    fun provideApiService(
+        dispatchersProvider: DispatchersProvider,
+        authTokenManager: AuthTokenManager,
+        dynamicURLManager: DynamicURLManager
+    ): NetworkApi {
+        NetworkComponentHolder.init(
+            dependencies = object : NetworkDependencies {
+                override val dispatchersProvider: DispatchersProvider = dispatchersProvider
+                override val networkSettingsManager: NetworkSettingsManager = object : NetworkSettingsManager {
+                    override fun getDynamicURL(): String = dynamicURLManager.getURL()
+                    override fun getAuthToken(): String = authTokenManager.getToken()
                 }
-            ).build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient, converterFactory: Converter.Factory): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(converterFactory)
-            .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
+            }
+        )
+        return NetworkComponentHolder.getApi()
     }
 }

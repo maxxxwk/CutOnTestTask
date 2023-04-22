@@ -114,6 +114,7 @@ class AuthScreenViewModel @Inject constructor(
             intents.send(AuthScreenIntent.NavigateToHomeScreen)
         }
         result.exceptionOrNull()?.let {
+            //todo make without retrofit dependency
             if (it is HttpException && it.code() == 404) {
                 intents.send(AuthScreenIntent.ShowAuthErrorMessage(R.string.incorrect_login_or_password_error))
             } else {

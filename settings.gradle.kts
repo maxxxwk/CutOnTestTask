@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":data:network")
+
+
 include(":core:android")
 
 

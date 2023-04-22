@@ -1,14 +1,13 @@
-package com.maxxxwk.testtask.network.url
+package com.maxxxwk.network.url
 
-import androidx.core.net.toUri
+import com.maxxxwk.network.api.NetworkSettingsManager
 import javax.inject.Inject
-import javax.inject.Singleton
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.Interceptor
 import okhttp3.Response
 import retrofit2.Invocation
 
-@Singleton
-class DynamicURLInterceptor @Inject constructor(private val dynamicUrlManager: DynamicURLManager) :
+internal class DynamicURLInterceptor @Inject constructor(private val networkSettingsManager: NetworkSettingsManager) :
     Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val isNeedDynamicURL = chain.request().tag(Invocation::class.java)?.method()
@@ -17,11 +16,11 @@ class DynamicURLInterceptor @Inject constructor(private val dynamicUrlManager: D
         return chain.proceed(
             if (isNeedDynamicURL) {
                 val url = chain.request().url
-                val newUrl = dynamicUrlManager.getURL().toUri().host?.let {
+                val newUrl = networkSettingsManager.getDynamicURL().toHttpUrl().host.let {
                     url.newBuilder()
                         .host(it)
                         .build()
-                } ?: url
+                }
                 chain.request().newBuilder()
                     .url(newUrl)
                     .build()

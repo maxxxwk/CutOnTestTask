@@ -61,16 +61,11 @@ dependencies {
     implementation(Libraries.DAGGER)
     kapt(KaptCompilers.DAGGER)
 
-    implementation(Libraries.KOTLINX_COLLECTIONS_IMMUTABLE)
-    implementation(Libraries.KOTLINX_SERIALIZATION_JSON)
-
-    implementation(platform(BillsOfMaterials.OKHTTP))
-    implementation(Libraries.OKHTTP)
-    implementation(Libraries.OKHTTP_LOGGING_INTERCEPTOR)
-
     implementation(Libraries.RETROFIT)
-    implementation(Libraries.RETROFIT_KOTLINX_SERIALIZATION_CONVERTER)
+
+    implementation(Libraries.KOTLINX_COLLECTIONS_IMMUTABLE)
 
     implementation(project(":core:kotlin"))
     implementation(project(":core:android"))
+    implementation(project(":data:network"))
 }

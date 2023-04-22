@@ -1,5 +1,5 @@
-package com.maxxxwk.testtask.network.url
+package com.maxxxwk.network.auth
 
 @Retention(AnnotationRetention.RUNTIME)
 @Target(AnnotationTarget.FUNCTION)
-annotation class DynamicURL
+internal annotation class Auth

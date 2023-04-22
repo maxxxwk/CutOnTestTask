@@ -1,4 +1,4 @@
-package com.maxxxwk.testtask.network.models
+package com.maxxxwk.network.api.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

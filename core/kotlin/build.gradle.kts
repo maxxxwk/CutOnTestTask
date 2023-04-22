@@ -10,4 +10,5 @@ java {
 
 dependencies {
     implementation(Libraries.COROUTINES_CORE)
+    implementation(Libraries.DAGGER)
 }
