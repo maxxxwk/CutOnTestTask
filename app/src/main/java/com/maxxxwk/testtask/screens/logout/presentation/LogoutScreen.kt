@@ -24,10 +24,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.maxxxwk.testtask.R
-import com.maxxxwk.testtask.common.composeStateEvents.EventEffect
-import com.maxxxwk.testtask.common.composeStateEvents.StateEventWithContent
-import com.maxxxwk.testtask.common.text.UIText
+import com.maxxxwk.android.R
+import com.maxxxwk.android.events.EventEffect
+import com.maxxxwk.android.events.StateEventWithContent
+import com.maxxxwk.android.text.UIText
 import com.maxxxwk.testtask.ui.components.CommonButton
 
 @Composable

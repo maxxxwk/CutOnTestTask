@@ -1,9 +1,9 @@
 package com.maxxxwk.testtask.screens.home.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.maxxxwk.testtask.R
-import com.maxxxwk.testtask.common.text.UIText
-import com.maxxxwk.testtask.common.viewmodel.BaseViewModel
+import com.maxxxwk.android.text.UIText
+import com.maxxxwk.android.viewmodel.BaseViewModel
+import com.maxxxwk.android.R
 import com.maxxxwk.testtask.di.Fake
 import com.maxxxwk.testtask.screens.home.domain.MenuItemsRepository
 import com.maxxxwk.testtask.screens.home.domain.UserInfoRepository

@@ -1,6 +1,6 @@
 package com.maxxxwk.testtask.screens.catalog.presentation
 
-import com.maxxxwk.testtask.common.text.UIText
+import com.maxxxwk.android.text.UIText
 import com.maxxxwk.testtask.screens.catalog.domain.Brand
 import kotlinx.collections.immutable.ImmutableList
 

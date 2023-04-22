@@ -20,9 +20,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.maxxxwk.testtask.R
-import com.maxxxwk.testtask.common.composeStateEvents.EventEffect
-import com.maxxxwk.testtask.common.text.UIText
+import com.maxxxwk.android.events.EventEffect
+import com.maxxxwk.android.R
+import com.maxxxwk.android.text.UIText
 import com.maxxxwk.testtask.ui.components.CommonButton
 import kotlinx.coroutines.delay
 
@@ -50,7 +50,7 @@ fun InitScreen(
     ) {
         Image(
             modifier = Modifier.fillMaxSize(),
-            painter = painterResource(R.drawable.initialize_screen_bg),
+            painter = painterResource(com.maxxxwk.testtask.R.drawable.initialize_screen_bg),
             contentDescription = null,
             contentScale = ContentScale.FillBounds
         )
@@ -60,7 +60,7 @@ fun InitScreen(
                 onRetry = viewModel::onRetry
             )
         } ?: Image(
-            painter = painterResource(R.drawable.ic_init_screen_logo),
+            painter = painterResource(com.maxxxwk.testtask.R.drawable.ic_init_screen_logo),
             contentDescription = null
         )
     }

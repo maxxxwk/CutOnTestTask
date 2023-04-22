@@ -1,19 +1,18 @@
 package com.maxxxwk.testtask.screens.auth.data
 
-import com.maxxxwk.testtask.di.DispatcherIO
+import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.testtask.network.ApiService
 import com.maxxxwk.testtask.screens.auth.domain.AppInfoRepository
 import com.maxxxwk.testtask.screens.auth.domain.models.AppInfo
 import com.maxxxwk.testtask.screens.auth.domain.models.AppInfoMessageType
 import javax.inject.Inject
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
 class AppInfoRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
-    @DispatcherIO private val dispatcher: CoroutineDispatcher
+    private val dispatchersProvider: DispatchersProvider
 ) : AppInfoRepository {
-    override suspend fun getAppInfo(): AppInfo = withContext(dispatcher) {
+    override suspend fun getAppInfo(): AppInfo = withContext(dispatchersProvider.io) {
         return@withContext try {
             when (apiService.getAppVersionInfo().answer) {
                 1 -> AppInfo(AppInfoMessageType.UPDATE_NEEDED)

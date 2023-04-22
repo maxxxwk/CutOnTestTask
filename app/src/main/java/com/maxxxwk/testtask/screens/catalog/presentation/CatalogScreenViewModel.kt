@@ -1,9 +1,9 @@
 package com.maxxxwk.testtask.screens.catalog.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.maxxxwk.testtask.R
-import com.maxxxwk.testtask.common.text.UIText
-import com.maxxxwk.testtask.common.viewmodel.BaseViewModel
+import com.maxxxwk.android.text.UIText
+import com.maxxxwk.android.viewmodel.BaseViewModel
+import com.maxxxwk.android.R
 import com.maxxxwk.testtask.screens.catalog.domain.BrandCatalogRepository
 import javax.inject.Inject
 import kotlinx.collections.immutable.toImmutableList

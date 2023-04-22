@@ -1,4 +1,4 @@
-package com.maxxxwk.testtask.common.text
+package com.maxxxwk.android.text
 
 import android.content.Context
 import androidx.annotation.StringRes

@@ -1,11 +1,11 @@
 package com.maxxxwk.testtask.screens.auth.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.maxxxwk.testtask.R
-import com.maxxxwk.testtask.common.composeStateEvents.consumed
-import com.maxxxwk.testtask.common.composeStateEvents.triggered
-import com.maxxxwk.testtask.common.text.UIText
-import com.maxxxwk.testtask.common.viewmodel.BaseViewModel
+import com.maxxxwk.android.events.consumed
+import com.maxxxwk.android.events.triggered
+import com.maxxxwk.android.text.UIText
+import com.maxxxwk.android.viewmodel.BaseViewModel
+import com.maxxxwk.android.R
 import com.maxxxwk.testtask.screens.auth.domain.AppInfoRepository
 import com.maxxxwk.testtask.screens.auth.domain.AuthUseCase
 import com.maxxxwk.testtask.screens.auth.domain.models.AppInfoMessageType

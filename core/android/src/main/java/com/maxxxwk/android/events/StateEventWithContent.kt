@@ -1,4 +1,4 @@
-package com.maxxxwk.testtask.common.composeStateEvents
+package com.maxxxwk.android.events
 
 import androidx.compose.runtime.Stable
 

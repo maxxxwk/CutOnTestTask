@@ -33,7 +33,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.maxxxwk.testtask.R
+import com.maxxxwk.android.R
 import com.maxxxwk.testtask.screens.home.domain.MenuItem
 import com.maxxxwk.testtask.ui.components.CommonButton
 
@@ -160,7 +160,7 @@ private fun MenuItem(modifier: Modifier = Modifier, item: MenuItem) {
             }
             Icon(
                 modifier = Modifier.height(40.dp),
-                painter = painterResource(R.drawable.ic_arrow),
+                painter = painterResource(com.maxxxwk.testtask.R.drawable.ic_arrow),
                 contentDescription = null,
                 tint = MaterialTheme.colors.secondary
             )

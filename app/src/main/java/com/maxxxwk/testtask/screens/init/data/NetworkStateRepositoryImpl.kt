@@ -19,11 +19,8 @@ class NetworkStateRepositoryImpl @Inject constructor(context: Context) : Network
                 connectivityManager.getNetworkCapabilities(it)?.let { capabilities ->
                     if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)
                         || capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)
-                    ) {
-                        NetworkState.AVAILABLE
-                    } else {
-                        NetworkState.UNAVAILABLE
-                    }
+                    ) NetworkState.AVAILABLE
+                    else NetworkState.UNAVAILABLE
                 }
             } ?: NetworkState.UNAVAILABLE
         } else {
@@ -31,11 +28,8 @@ class NetworkStateRepositoryImpl @Inject constructor(context: Context) : Network
                 if (
                     it.isConnected &&
                     (it.type == ConnectivityManager.TYPE_WIFI || it.type == ConnectivityManager.TYPE_MOBILE)
-                ) {
-                    NetworkState.AVAILABLE
-                } else {
-                    NetworkState.UNAVAILABLE
-                }
+                ) NetworkState.AVAILABLE
+                else NetworkState.UNAVAILABLE
             } ?: NetworkState.UNAVAILABLE
         }
     }

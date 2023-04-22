@@ -1,12 +1,12 @@
 package com.maxxxwk.testtask.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
-import com.maxxxwk.testtask.common.viewmodel.ViewModelFactory
 import com.maxxxwk.testtask.screens.auth.presentation.AuthScreen
 import com.maxxxwk.testtask.screens.catalog.presentation.CatalogScreen
 import com.maxxxwk.testtask.screens.home.presentation.HomeScreen
@@ -17,7 +17,11 @@ import com.maxxxwk.testtask.ui.components.BottomNavigationBar
 
 @Suppress("FunctionNaming")
 @Composable
-fun Navigation(startDestination: String, viewModelFactory: ViewModelFactory, closeApp: () -> Unit) {
+fun Navigation(
+    startDestination: String,
+    viewModelFactory: ViewModelProvider.Factory,
+    closeApp: () -> Unit
+) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,

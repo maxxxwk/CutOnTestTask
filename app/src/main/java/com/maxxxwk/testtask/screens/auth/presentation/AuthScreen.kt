@@ -35,9 +35,9 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.maxxxwk.testtask.R
-import com.maxxxwk.testtask.common.composeStateEvents.EventEffect
-import com.maxxxwk.testtask.common.text.UIText
+import com.maxxxwk.android.events.EventEffect
+import com.maxxxwk.android.text.UIText
+import com.maxxxwk.android.R
 import com.maxxxwk.testtask.screens.auth.presentation.components.CredentialsTextField
 import com.maxxxwk.testtask.ui.components.CommonButton
 

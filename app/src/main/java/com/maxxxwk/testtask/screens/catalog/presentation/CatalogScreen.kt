@@ -34,8 +34,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.maxxxwk.testtask.R
-import com.maxxxwk.testtask.common.text.UIText
+import com.maxxxwk.android.text.UIText
+import com.maxxxwk.android.R
 import com.maxxxwk.testtask.screens.catalog.domain.Brand
 import kotlinx.collections.immutable.ImmutableList
 

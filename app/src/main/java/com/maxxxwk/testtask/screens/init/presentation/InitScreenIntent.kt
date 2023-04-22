@@ -1,6 +1,6 @@
 package com.maxxxwk.testtask.screens.init.presentation
 
-import com.maxxxwk.testtask.common.text.UIText
+import com.maxxxwk.android.text.UIText
 
 sealed interface InitScreenIntent {
     object Init : InitScreenIntent

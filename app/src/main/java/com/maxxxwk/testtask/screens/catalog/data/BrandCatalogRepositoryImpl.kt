@@ -1,19 +1,18 @@
 package com.maxxxwk.testtask.screens.catalog.data
 
-import com.maxxxwk.testtask.common.result.wrapResult
-import com.maxxxwk.testtask.di.DispatcherIO
+import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
+import com.maxxxwk.kotlin.result.wrapResult
 import com.maxxxwk.testtask.network.ApiService
 import com.maxxxwk.testtask.screens.catalog.domain.Brand
 import com.maxxxwk.testtask.screens.catalog.domain.BrandCatalogRepository
 import javax.inject.Inject
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 
 class BrandCatalogRepositoryImpl @Inject constructor(
     private val apiService: ApiService,
-    @DispatcherIO private val dispatcher: CoroutineDispatcher
+    private val dispatchersProvider: DispatchersProvider
 ) : BrandCatalogRepository {
-    override suspend fun getBrandCatalog(): Result<List<Brand>> = withContext(dispatcher) {
+    override suspend fun getBrandCatalog(): Result<List<Brand>> = withContext(dispatchersProvider.io) {
         wrapResult {
             apiService.getBrands().brands.map {
                 Brand(

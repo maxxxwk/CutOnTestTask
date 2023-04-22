@@ -1,10 +1,10 @@
 package com.maxxxwk.testtask.screens.init.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.maxxxwk.testtask.R
-import com.maxxxwk.testtask.common.composeStateEvents.triggered
-import com.maxxxwk.testtask.common.text.UIText
-import com.maxxxwk.testtask.common.viewmodel.BaseViewModel
+import com.maxxxwk.android.events.triggered
+import com.maxxxwk.android.text.UIText
+import com.maxxxwk.android.viewmodel.BaseViewModel
+import com.maxxxwk.android.R
 import com.maxxxwk.testtask.screens.init.domain.InitRepository
 import com.maxxxwk.testtask.screens.init.domain.NetworkConnectionAvailabilityUseCase
 import javax.inject.Inject

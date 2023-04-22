@@ -1,4 +1,4 @@
-package com.maxxxwk.testtask.common.viewmodel
+package com.maxxxwk.android.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

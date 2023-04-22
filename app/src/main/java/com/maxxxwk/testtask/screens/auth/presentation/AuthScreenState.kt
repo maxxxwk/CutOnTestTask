@@ -1,8 +1,8 @@
 package com.maxxxwk.testtask.screens.auth.presentation
 
-import com.maxxxwk.testtask.common.composeStateEvents.StateEventWithContent
-import com.maxxxwk.testtask.common.composeStateEvents.consumed
-import com.maxxxwk.testtask.common.text.UIText
+import com.maxxxwk.android.events.StateEventWithContent
+import com.maxxxwk.android.events.consumed
+import com.maxxxwk.android.text.UIText
 
 sealed interface AuthScreenState {
     object Loading : AuthScreenState

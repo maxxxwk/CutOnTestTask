@@ -1,6 +1,6 @@
 @file:Suppress("FunctionNaming")
 
-package com.maxxxwk.testtask.common.composeStateEvents
+package com.maxxxwk.android.events
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

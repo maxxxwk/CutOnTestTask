@@ -8,7 +8,6 @@ import com.maxxxwk.testtask.network.url.DynamicURLInterceptor
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
-import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
@@ -18,7 +17,6 @@ import retrofit2.Retrofit
 
 @Module
 class NetworkModule {
-    @OptIn(ExperimentalSerializationApi::class)
     @Singleton
     @Provides
     fun provideConverterFactory(): Converter.Factory {

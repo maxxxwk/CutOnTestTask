@@ -1,4 +1,9 @@
 object Versions {
+    const val COMPILE_SDK = 33
+    const val MIN_SDK = 21
+
+    const val COMPOSE_KOTLIN_COMPILER_EXTENCION = "1.4.6"
+
     const val LIFECYCLE = "2.6.1"
     const val DAGGER = "2.45"
 }
@@ -30,6 +35,8 @@ object Libraries {
 
     const val RETROFIT = "com.squareup.retrofit2:retrofit:2.9.0"
     const val RETROFIT_KOTLINX_SERIALIZATION_CONVERTER = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
+
+    const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC"
 }
 
 object DebugLibraries {

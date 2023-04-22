@@ -1,5 +1,11 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":core:android")
+
+
+include(":core:kotlin")
+
+
 pluginManagement {
     repositories {
         google()

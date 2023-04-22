@@ -9,11 +9,11 @@ plugins {
 
 android {
     namespace = "com.maxxxwk.testtask"
-    compileSdk = 33
+    compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {
         applicationId = "com.maxxxwk.testtask"
-        minSdk = 21
+        minSdk = Versions.MIN_SDK
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -40,7 +40,7 @@ android {
     }
     kotlinOptions.jvmTarget = "1.8"
     buildFeatures.compose = true
-    composeOptions.kotlinCompilerExtensionVersion = "1.4.6"
+    composeOptions.kotlinCompilerExtensionVersion = Versions.COMPOSE_KOTLIN_COMPILER_EXTENCION
     packagingOptions.resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
 }
 
@@ -71,5 +71,6 @@ dependencies {
     implementation(Libraries.RETROFIT)
     implementation(Libraries.RETROFIT_KOTLINX_SERIALIZATION_CONVERTER)
 
-
+    implementation(project(":core:kotlin"))
+    implementation(project(":core:android"))
 }

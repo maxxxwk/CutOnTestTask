@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.maxxxwk.testtask.common.viewmodel.ViewModelFactory
+import androidx.lifecycle.ViewModelProvider
 import com.maxxxwk.testtask.navigation.Navigation
 import com.maxxxwk.testtask.navigation.NavigationRoute
 import com.maxxxwk.testtask.network.auth.AuthTokenManager
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelFactory
+    lateinit var viewModelFactory: ViewModelProvider.Factory
 
     @Inject
     lateinit var tokenManager: AuthTokenManager

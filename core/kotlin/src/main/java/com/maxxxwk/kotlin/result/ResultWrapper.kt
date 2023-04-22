@@ -1,4 +1,4 @@
-package com.maxxxwk.testtask.common.result
+package com.maxxxwk.kotlin.result
 
 @Suppress("TooGenericExceptionCaught")
 suspend inline fun <T> wrapResult(crossinline action: suspend () -> T): Result<T> = try {
