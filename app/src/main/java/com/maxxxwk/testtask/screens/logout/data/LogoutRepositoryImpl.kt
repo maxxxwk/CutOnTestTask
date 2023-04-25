@@ -1,7 +1,6 @@
 package com.maxxxwk.testtask.screens.logout.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.kotlin.result.wrapResult
 import com.maxxxwk.local_preferences.api.AuthTokenManager
 import com.maxxxwk.network.api.NetworkApi
 import com.maxxxwk.testtask.screens.logout.domain.LogoutRepository
@@ -14,7 +13,7 @@ class LogoutRepositoryImpl @Inject constructor(
     private val authTokenManager: AuthTokenManager
 ) : LogoutRepository {
     override suspend fun logout(): Result<Unit> = withContext(dispatchersProvider.io) {
-        wrapResult {
+        runCatching {
             apiService.logout()
             authTokenManager.clearToken()
         }

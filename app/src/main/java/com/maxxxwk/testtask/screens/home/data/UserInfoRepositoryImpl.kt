@@ -1,7 +1,6 @@
 package com.maxxxwk.testtask.screens.home.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.kotlin.result.wrapResult
 import com.maxxxwk.network.api.NetworkApi
 import com.maxxxwk.testtask.screens.home.domain.UserInfo
 import com.maxxxwk.testtask.screens.home.domain.UserInfoRepository
@@ -13,7 +12,7 @@ class UserInfoRepositoryImpl @Inject constructor(
     private val dispatchersProvider: DispatchersProvider
 ) : UserInfoRepository {
     override suspend fun getUserInfo(): Result<UserInfo> = withContext(dispatchersProvider.io) {
-        wrapResult {
+        runCatching {
             apiService.getUserInfo().let {
                 UserInfo(
                     userId = it.userId,

@@ -1,7 +1,6 @@
 package com.maxxxwk.testtask.screens.auth.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.kotlin.result.wrapEmptyResult
 import com.maxxxwk.local_preferences.api.AuthTokenManager
 import com.maxxxwk.network.api.NetworkApi
 import com.maxxxwk.testtask.screens.auth.domain.AuthRepository
@@ -20,7 +19,7 @@ class AuthRepositoryImpl @Inject constructor(
         credentials: Credentials,
         deviceInfo: DeviceInfo
     ): Result<Unit> = withContext(dispatchersProvider.io) {
-        wrapEmptyResult {
+        runCatching {
             apiService.login(
                 login = credentials.login,
                 password = credentials.password,
@@ -29,6 +28,7 @@ class AuthRepositoryImpl @Inject constructor(
                 devavs = deviceInfo.devavs,
                 devaid = deviceInfo.devaid
             ).let { launch { tokenManager.saveToken(it.token) } }
+            Unit
         }
     }
 }
