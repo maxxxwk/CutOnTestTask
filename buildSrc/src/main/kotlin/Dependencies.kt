@@ -37,6 +37,8 @@ object Libraries {
     const val RETROFIT_KOTLINX_SERIALIZATION_CONVERTER = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:1.0.0"
 
     const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-RC"
+
+    const val DATASTORE = "androidx.datastore:datastore-preferences:1.0.0"
 }
 
 object DebugLibraries {

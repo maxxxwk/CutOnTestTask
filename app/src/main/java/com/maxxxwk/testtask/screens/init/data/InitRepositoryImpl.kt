@@ -14,8 +14,6 @@ class InitRepositoryImpl @Inject constructor(
     private val dispatchersProvider: DispatchersProvider
 ) : InitRepository {
     override suspend fun init(): Result<Unit> = withContext(dispatchersProvider.io) {
-        wrapResult {
-            apiService.getRoute().let { urlManager.saveURL(it.route) }
-        }
+        wrapResult { apiService.getRoute().let { urlManager.url = it.route } }
     }
 }

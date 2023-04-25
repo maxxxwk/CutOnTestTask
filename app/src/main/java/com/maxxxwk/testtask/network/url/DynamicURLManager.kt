@@ -5,14 +5,10 @@ import javax.inject.Singleton
 
 @Singleton
 class DynamicURLManager @Inject constructor() {
-    private var url: String? = null
-
-    fun saveURL(url: String) {
-        this.url = url
-    }
+    var url: String? = null
 
     fun getURL(): String {
-        checkNotNull(url) { "API URL is missing!" }
+        checkNotNull(url) { "Token is missing!" }
         return url!!
     }
 }

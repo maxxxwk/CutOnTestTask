@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":data:local-preferences")
+
+
 include(":data:network")
 
 

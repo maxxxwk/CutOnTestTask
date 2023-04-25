@@ -6,5 +6,6 @@ import com.maxxxwk.android.text.UIText
 
 data class InitScreenState(
     val errorMessage: UIText? = null,
-    val navigateToAuthScreenEvent: StateEvent = consumed
+    val navigateToAuthScreenEvent: StateEvent = consumed,
+    val navigateToMainScreenEvent: StateEvent = consumed
 )

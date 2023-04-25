@@ -22,5 +22,7 @@ dependencies {
     implementation(Libraries.RETROFIT)
     implementation(Libraries.RETROFIT_KOTLINX_SERIALIZATION_CONVERTER)
 
+    implementation(Libraries.COROUTINES_CORE)
+
     implementation(project(":core:kotlin"))
 }

@@ -10,7 +10,6 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import com.maxxxwk.testtask.navigation.Navigation
 import com.maxxxwk.testtask.navigation.NavigationRoute
-import com.maxxxwk.testtask.network.auth.AuthTokenManager
 import com.maxxxwk.testtask.ui.theme.CutOnTheme
 import javax.inject.Inject
 
@@ -18,9 +17,6 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var tokenManager: AuthTokenManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,11 +28,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.primary
                 ) {
                     Navigation(
-                        startDestination = if (tokenManager.hasToken()) {
-                            NavigationRoute.MAIN.route
-                        } else {
-                            NavigationRoute.INIT.route
-                        },
+                        startDestination = NavigationRoute.INIT.route,
                         viewModelFactory = viewModelFactory,
                         closeApp = { finishAndRemoveTask() }
                     )

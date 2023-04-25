@@ -1,10 +1,11 @@
 package com.maxxxwk.testtask.screens.init.presentation
 
 import androidx.lifecycle.viewModelScope
+import com.maxxxwk.android.R
 import com.maxxxwk.android.events.triggered
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.viewmodel.BaseViewModel
-import com.maxxxwk.android.R
+import com.maxxxwk.local_preferences.api.AuthTokenManager
 import com.maxxxwk.testtask.screens.init.domain.InitRepository
 import com.maxxxwk.testtask.screens.init.domain.NetworkConnectionAvailabilityUseCase
 import javax.inject.Inject
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 
 class InitScreenViewModel @Inject constructor(
     private val initRepository: InitRepository,
-    private val networkConnectionAvailabilityUseCase: NetworkConnectionAvailabilityUseCase
+    private val networkConnectionAvailabilityUseCase: NetworkConnectionAvailabilityUseCase,
+    private val authTokenManager: AuthTokenManager
 ) : BaseViewModel<InitScreenState, InitScreenIntent>(InitScreenState()) {
 
     init {
@@ -27,15 +29,14 @@ class InitScreenViewModel @Inject constructor(
             state.value.copy(errorMessage = null)
         }
         is InitScreenIntent.ShowError -> state.value.copy(errorMessage = intent.message)
-        InitScreenIntent.NavigateToLoginScreen -> state.value.copy(navigateToAuthScreenEvent = triggered)
+        InitScreenIntent.NavigateToAuthScreen -> state.value.copy(navigateToAuthScreenEvent = triggered)
+        InitScreenIntent.NavigateToMainScreen -> state.value.copy(navigateToMainScreenEvent = triggered)
     }
 
     private fun init() = viewModelScope.launch {
         if (networkConnectionAvailabilityUseCase()) {
             val result = initRepository.init()
-            result.getOrNull()?.let {
-                intents.send(InitScreenIntent.NavigateToLoginScreen)
-            }
+            result.getOrNull()?.let { navigateToNextScreen() }
             result.exceptionOrNull()?.let { throwable ->
                 intents.send(
                     InitScreenIntent.ShowError(
@@ -46,6 +47,14 @@ class InitScreenViewModel @Inject constructor(
             }
         } else {
             intents.send(InitScreenIntent.ShowError(UIText.StringResource(R.string.no_internet_connection_error)))
+        }
+    }
+
+    private fun navigateToNextScreen() = viewModelScope.launch {
+        if (authTokenManager.hasToken()) {
+            intents.send(InitScreenIntent.NavigateToMainScreen)
+        } else {
+            intents.send(InitScreenIntent.NavigateToAuthScreen)
         }
     }
 

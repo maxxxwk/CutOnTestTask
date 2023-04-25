@@ -31,7 +31,8 @@ private const val DELAY_BEFORE_NAVIGATE = 200L
 @Composable
 fun InitScreen(
     viewModel: InitScreenViewModel,
-    navigateToLoginScreen: () -> Unit
+    navigateToLoginScreen: () -> Unit,
+    navigateToMainScreen: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
     EventEffect(
@@ -40,6 +41,14 @@ fun InitScreen(
         action = {
             delay(DELAY_BEFORE_NAVIGATE)
             navigateToLoginScreen()
+        }
+    )
+    EventEffect(
+        event = state.navigateToMainScreenEvent,
+        onConsumed = {},
+        action = {
+            delay(DELAY_BEFORE_NAVIGATE)
+            navigateToMainScreen()
         }
     )
     Box(

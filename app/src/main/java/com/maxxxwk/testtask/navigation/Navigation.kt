@@ -33,6 +33,10 @@ fun Navigation(
                 navigateToLoginScreen = {
                     navController.popBackStack()
                     navController.navigate(NavigationRoute.LOGIN.route)
+                },
+                navigateToMainScreen = {
+                    navController.popBackStack()
+                    navController.navigate(NavigationRoute.MAIN.route)
                 }
             )
         }

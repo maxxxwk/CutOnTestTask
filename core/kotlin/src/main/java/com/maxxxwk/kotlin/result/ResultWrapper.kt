@@ -6,3 +6,10 @@ suspend inline fun <T> wrapResult(crossinline action: suspend () -> T): Result<T
 } catch (t: Throwable) {
     Result.failure(t)
 }
+
+suspend inline fun <T> wrapEmptyResult(crossinline action: suspend () -> T): Result<Unit> = try {
+    action()
+    Result.success(Unit)
+} catch (t: Throwable) {
+    Result.failure(t)
+}

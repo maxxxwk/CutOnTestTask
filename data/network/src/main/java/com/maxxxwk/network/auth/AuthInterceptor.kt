@@ -2,6 +2,7 @@ package com.maxxxwk.network.auth
 
 import com.maxxxwk.network.api.NetworkSettingsManager
 import javax.inject.Inject
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 import retrofit2.Invocation
@@ -19,7 +20,7 @@ internal class AuthInterceptor @Inject constructor(
                     .newBuilder()
                     .url(
                         chain.request().url.newBuilder()
-                            .addQueryParameter("token", authTokenManager.getAuthToken()).build()
+                            .addQueryParameter("token", runBlocking { authTokenManager.getAuthToken() }).build()
                     ).build()
             } else {
                 chain.request()

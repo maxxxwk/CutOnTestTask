@@ -68,4 +68,5 @@ dependencies {
     implementation(project(":core:kotlin"))
     implementation(project(":core:android"))
     implementation(project(":data:network"))
+    implementation(project(":data:local-preferences"))
 }
