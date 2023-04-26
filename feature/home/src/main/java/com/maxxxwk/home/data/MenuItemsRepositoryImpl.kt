@@ -1,13 +1,13 @@
-package com.maxxxwk.testtask.screens.home.data
+package com.maxxxwk.home.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.network.api.NetworkApi
-import com.maxxxwk.testtask.screens.home.domain.MenuItem
-import com.maxxxwk.testtask.screens.home.domain.MenuItemsRepository
+import com.maxxxwk.home.domain.MenuItem
+import com.maxxxwk.home.domain.MenuItemsRepository
 import javax.inject.Inject
 import kotlinx.coroutines.withContext
 
-class MenuItemsRepositoryImpl @Inject constructor(
+internal class MenuItemsRepositoryImpl @Inject constructor(
     private val apiService: NetworkApi,
     private val dispatchersProvider: DispatchersProvider
 ) : MenuItemsRepository {

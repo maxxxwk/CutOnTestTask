@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
 import com.maxxxwk.auth.api.AuthScreenComponentHolder
 import com.maxxxwk.auth.api.AuthScreenDependencies
+import com.maxxxwk.home.api.HomeScreenComponentHolder
+import com.maxxxwk.home.api.HomeScreenDependencies
 import com.maxxxwk.init.api.InitScreenComponentHolder
 import com.maxxxwk.init.api.InitScreenDependencies
 import com.maxxxwk.logout.api.LogoutScreenComponentHolder
@@ -32,12 +34,16 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var logoutScreenDependencies: LogoutScreenDependencies
 
+    @Inject
+    lateinit var homeScreenDependencies: HomeScreenDependencies
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as App).component.inject(this)
         InitScreenComponentHolder.init(initScreenDependencies)
         AuthScreenComponentHolder.init(authScreenDependencies)
         LogoutScreenComponentHolder.init(logoutScreenDependencies)
+        HomeScreenComponentHolder.init(homeScreenDependencies)
         setContent {
             CutOnTheme {
                 Surface(

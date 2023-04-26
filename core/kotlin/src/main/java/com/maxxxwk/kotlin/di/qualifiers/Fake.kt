@@ -1,4 +1,4 @@
-package com.maxxxwk.testtask.di
+package com.maxxxwk.kotlin.di.qualifiers
 
 import javax.inject.Qualifier
 

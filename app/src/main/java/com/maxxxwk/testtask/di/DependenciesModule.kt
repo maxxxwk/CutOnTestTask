@@ -2,6 +2,7 @@ package com.maxxxwk.testtask.di
 
 import android.content.Context
 import com.maxxxwk.auth.api.AuthScreenDependencies
+import com.maxxxwk.home.api.HomeScreenDependencies
 import com.maxxxwk.init.api.InitScreenDependencies
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.local_preferences.api.AuthTokenManager
@@ -58,6 +59,17 @@ class DependenciesModule {
             override val dispatchersProvider: DispatchersProvider = dispatchersProvider
             override val networkApi: NetworkApi = networkApi
             override val authTokenManager: AuthTokenManager = authTokenManager
+        }
+    }
+
+    @Provides
+    fun provideHomeScreenDependencies(
+        dispatchersProvider: DispatchersProvider,
+        networkApi: NetworkApi
+    ): HomeScreenDependencies {
+        return object : HomeScreenDependencies {
+            override val dispatchersProvider: DispatchersProvider = dispatchersProvider
+            override val networkApi: NetworkApi = networkApi
         }
     }
 }

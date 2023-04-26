@@ -12,12 +12,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.maxxxwk.testtask.R
+import com.maxxxwk.home.R
 
 
 @Suppress("FunctionNaming")
 @Composable
-fun HomeScreenTopBar(
+internal fun HomeScreenTopBar(
     navigateToLogout: () -> Unit = {},
     loadUserInfo: () -> Unit = {},
 ) {
@@ -25,7 +25,7 @@ fun HomeScreenTopBar(
         title = {
             Text(
                 modifier = Modifier.fillMaxWidth(),
-                text = stringResource(R.string.app_name),
+                text = stringResource(com.maxxxwk.android.R.string.app_name),
                 style = MaterialTheme.typography.h3,
                 color = MaterialTheme.colors.onBackground,
                 textAlign = TextAlign.Center

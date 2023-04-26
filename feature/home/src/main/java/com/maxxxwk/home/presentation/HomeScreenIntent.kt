@@ -1,11 +1,11 @@
-package com.maxxxwk.testtask.screens.home.presentation
+package com.maxxxwk.home.presentation
 
 import com.maxxxwk.android.text.UIText
-import com.maxxxwk.testtask.screens.home.domain.MenuItem
-import com.maxxxwk.testtask.screens.home.domain.UserInfo
+import com.maxxxwk.home.domain.MenuItem
+import com.maxxxwk.home.domain.UserInfo
 import kotlinx.collections.immutable.ImmutableList
 
-sealed interface HomeScreenIntent {
+internal sealed interface HomeScreenIntent {
     object LoadUserInfo : HomeScreenIntent
     data class ShowUserInfo(val userInfo: UserInfo) : HomeScreenIntent
     data class ShowMenu(val menuItems: ImmutableList<MenuItem>) : HomeScreenIntent

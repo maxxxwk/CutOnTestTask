@@ -1,6 +1,6 @@
-package com.maxxxwk.testtask.screens.home.domain
+package com.maxxxwk.home.domain
 
-data class UserInfo(
+internal data class UserInfo(
     val userId: Int,
     val firstName: String,
     val lastName: String,

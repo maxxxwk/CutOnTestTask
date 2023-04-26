@@ -1,11 +1,11 @@
-package com.maxxxwk.testtask.screens.home.presentation
+package com.maxxxwk.home.presentation
 
 import com.maxxxwk.android.text.UIText
-import com.maxxxwk.testtask.screens.home.domain.MenuItem
-import com.maxxxwk.testtask.screens.home.domain.UserInfo
+import com.maxxxwk.home.domain.MenuItem
+import com.maxxxwk.home.domain.UserInfo
 import kotlinx.collections.immutable.ImmutableList
 
-sealed interface HomeScreenState {
+internal sealed interface HomeScreenState {
     object Loading : HomeScreenState
     data class Content(
         val userInfo: UserInfo? = null,

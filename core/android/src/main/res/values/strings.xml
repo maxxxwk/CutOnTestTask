@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">CutOn</string>
     <string name="no_internet_connection_error">Відсутнє Інтернет з\'єднання</string>
     <string name="unknown_error">Невідома помилка…</string>
     <string name="incorrect_login_or_password_error">Неправильний логін або пароль</string>

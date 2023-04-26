@@ -1,13 +1,13 @@
-package com.maxxxwk.testtask.screens.home.data
+package com.maxxxwk.home.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.network.api.NetworkApi
-import com.maxxxwk.testtask.screens.home.domain.UserInfo
-import com.maxxxwk.testtask.screens.home.domain.UserInfoRepository
+import com.maxxxwk.home.domain.UserInfo
+import com.maxxxwk.home.domain.UserInfoRepository
 import javax.inject.Inject
 import kotlinx.coroutines.withContext
 
-class UserInfoRepositoryImpl @Inject constructor(
+internal class UserInfoRepositoryImpl @Inject constructor(
     private val apiService: NetworkApi,
     private val dispatchersProvider: DispatchersProvider
 ) : UserInfoRepository {

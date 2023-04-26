@@ -1,17 +1,17 @@
-package com.maxxxwk.testtask.screens.home.presentation
+package com.maxxxwk.home.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.viewmodel.BaseViewModel
 import com.maxxxwk.android.R
-import com.maxxxwk.testtask.di.Fake
-import com.maxxxwk.testtask.screens.home.domain.MenuItemsRepository
-import com.maxxxwk.testtask.screens.home.domain.UserInfoRepository
+import com.maxxxwk.home.domain.MenuItemsRepository
+import com.maxxxwk.home.domain.UserInfoRepository
+import com.maxxxwk.kotlin.di.qualifiers.Fake
 import javax.inject.Inject
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 
-class HomeScreenViewModel @Inject constructor(
+internal class HomeScreenViewModel @Inject constructor(
     private val userInfoRepository: UserInfoRepository,
     @Fake private val menuItemsRepository: MenuItemsRepository
 ) : BaseViewModel<HomeScreenState, HomeScreenIntent>(HomeScreenState.Loading) {

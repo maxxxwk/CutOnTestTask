@@ -8,10 +8,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.maxxxwk.auth.api.AuthScreenComponentHolder
+import com.maxxxwk.home.api.HomeScreenComponentHolder
 import com.maxxxwk.init.api.InitScreenComponentHolder
 import com.maxxxwk.logout.api.LogoutScreenComponentHolder
 import com.maxxxwk.testtask.screens.catalog.presentation.CatalogScreen
-import com.maxxxwk.testtask.screens.home.presentation.HomeScreen
 import com.maxxxwk.testtask.ui.components.BottomNavigationBar
 
 
@@ -51,12 +51,9 @@ fun Navigation(
             startDestination = BottomNavigationRoute.HOME.route
         ) {
             composable(BottomNavigationRoute.HOME.route) {
-                HomeScreen(
-                    viewModel = viewModel(factory = viewModelFactory),
+                HomeScreenComponentHolder.getApi().Screen(
                     navigateToLogout = { navController.navigate(NavigationRoute.LOGOUT.route) },
-                    navigateToCatalog = {
-                        navController.navigate(BottomNavigationRoute.BRANDS_CATALOG)
-                    },
+                    navigateToCatalog = { navController.navigate(BottomNavigationRoute.BRANDS_CATALOG) },
                     bottomBar = { BottomNavigationBar(navController = navController) }
                 )
             }

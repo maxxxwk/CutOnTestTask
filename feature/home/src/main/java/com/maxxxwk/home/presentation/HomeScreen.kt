@@ -1,6 +1,6 @@
 @file:Suppress("FunctionNaming")
 
-package com.maxxxwk.testtask.screens.home.presentation
+package com.maxxxwk.home.presentation
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -35,11 +35,12 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.maxxxwk.android.R
 import com.maxxxwk.android.ui.components.CommonButton
-import com.maxxxwk.testtask.screens.home.domain.MenuItem
+import com.maxxxwk.home.domain.MenuItem
+import com.maxxxwk.testtask.screens.home.presentation.HomeScreenTopBar
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(
+internal fun HomeScreen(
     viewModel: HomeScreenViewModel,
     navigateToLogout: () -> Unit,
     navigateToCatalog: () -> Unit,
@@ -160,7 +161,7 @@ private fun MenuItem(modifier: Modifier = Modifier, item: MenuItem) {
             }
             Icon(
                 modifier = Modifier.height(40.dp),
-                painter = painterResource(com.maxxxwk.testtask.R.drawable.ic_arrow),
+                painter = painterResource(com.maxxxwk.home.R.drawable.ic_arrow),
                 contentDescription = null,
                 tint = MaterialTheme.colors.secondary
             )

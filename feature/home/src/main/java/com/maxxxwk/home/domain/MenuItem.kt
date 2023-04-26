@@ -1,6 +1,6 @@
-package com.maxxxwk.testtask.screens.home.domain
+package com.maxxxwk.home.domain
 
-data class MenuItem(
+internal data class MenuItem(
     val itemId: Int,
     val itemName: String,
     val itemImage: String
