@@ -8,6 +8,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
+import com.maxxxwk.init.api.InitScreenComponentHolder
+import com.maxxxwk.init.api.InitScreenDependencies
 import com.maxxxwk.testtask.navigation.Navigation
 import com.maxxxwk.testtask.navigation.NavigationRoute
 import com.maxxxwk.testtask.ui.theme.CutOnTheme
@@ -18,9 +20,13 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    @Inject
+    lateinit var initScreenDependencies: InitScreenDependencies
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as App).component.inject(this)
+        InitScreenComponentHolder.init(initScreenDependencies)
         setContent {
             CutOnTheme {
                 Surface(

@@ -7,10 +7,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import com.maxxxwk.init.api.InitScreenComponentHolder
 import com.maxxxwk.testtask.screens.auth.presentation.AuthScreen
 import com.maxxxwk.testtask.screens.catalog.presentation.CatalogScreen
 import com.maxxxwk.testtask.screens.home.presentation.HomeScreen
-import com.maxxxwk.testtask.screens.init.presentation.InitScreen
 import com.maxxxwk.testtask.screens.logout.presentation.LogoutScreen
 import com.maxxxwk.testtask.ui.components.BottomNavigationBar
 
@@ -28,8 +28,7 @@ fun Navigation(
         startDestination = startDestination
     ) {
         composable(NavigationRoute.INIT.route) {
-            InitScreen(
-                viewModel = viewModel(factory = viewModelFactory),
+            InitScreenComponentHolder.getApi().Screen(
                 navigateToLoginScreen = {
                     navController.popBackStack()
                     navController.navigate(NavigationRoute.LOGIN.route)

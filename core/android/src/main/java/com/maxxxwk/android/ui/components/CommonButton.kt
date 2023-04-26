@@ -1,4 +1,4 @@
-package com.maxxxwk.testtask.ui.components
+package com.maxxxwk.android.ui.components
 
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults

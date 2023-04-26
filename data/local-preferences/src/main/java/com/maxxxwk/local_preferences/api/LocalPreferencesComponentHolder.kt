@@ -20,7 +20,7 @@ object LocalPreferencesComponentHolder :
     }
 
     override fun getApi(): LocalPreferencesApi {
-        checkNotNull(component) { "LocalPreferencesComponentHolder isn't initialised!" }
+        checkNotNull(component) { "LocalPreferencesComponent isn't initialised!" }
         return component!!.api
     }
 

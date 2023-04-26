@@ -13,7 +13,8 @@ import javax.inject.Singleton
         ViewModelFactoryModule::class,
         NetworkModule::class,
         LocalPreferencesModule::class,
-        RepositoryModule::class
+        RepositoryModule::class,
+        DependenciesModule::class
     ]
 )
 @Singleton

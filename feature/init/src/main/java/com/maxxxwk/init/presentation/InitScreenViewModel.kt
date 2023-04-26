@@ -1,17 +1,17 @@
-package com.maxxxwk.testtask.screens.init.presentation
+package com.maxxxwk.init.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.maxxxwk.android.R
 import com.maxxxwk.android.events.triggered
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.viewmodel.BaseViewModel
+import com.maxxxwk.init.domain.InitRepository
+import com.maxxxwk.init.domain.NetworkConnectionAvailabilityUseCase
 import com.maxxxwk.local_preferences.api.AuthTokenManager
-import com.maxxxwk.testtask.screens.init.domain.InitRepository
-import com.maxxxwk.testtask.screens.init.domain.NetworkConnectionAvailabilityUseCase
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
-class InitScreenViewModel @Inject constructor(
+internal class InitScreenViewModel @Inject constructor(
     private val initRepository: InitRepository,
     private val networkConnectionAvailabilityUseCase: NetworkConnectionAvailabilityUseCase,
     private val authTokenManager: AuthTokenManager

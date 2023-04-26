@@ -13,10 +13,6 @@ import com.maxxxwk.testtask.screens.home.data.MenuItemsRepositoryImpl
 import com.maxxxwk.testtask.screens.home.data.UserInfoRepositoryImpl
 import com.maxxxwk.testtask.screens.home.domain.MenuItemsRepository
 import com.maxxxwk.testtask.screens.home.domain.UserInfoRepository
-import com.maxxxwk.testtask.screens.init.data.InitRepositoryImpl
-import com.maxxxwk.testtask.screens.init.data.NetworkStateRepositoryImpl
-import com.maxxxwk.testtask.screens.init.domain.InitRepository
-import com.maxxxwk.testtask.screens.init.domain.NetworkStateRepository
 import com.maxxxwk.testtask.screens.logout.data.LogoutRepositoryImpl
 import com.maxxxwk.testtask.screens.logout.domain.LogoutRepository
 import dagger.Binds
@@ -24,11 +20,6 @@ import dagger.Module
 
 @Module
 interface RepositoryModule {
-    @Binds
-    fun bindInitRepository(initRepositoryImpl: InitRepositoryImpl): InitRepository
-
-    @Binds
-    fun bindNetworkStateRepository(networkStateRepositoryImpl: NetworkStateRepositoryImpl): NetworkStateRepository
 
     @Binds
     fun bindAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository

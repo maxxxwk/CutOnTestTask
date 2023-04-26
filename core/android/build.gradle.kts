@@ -37,6 +37,7 @@ dependencies {
 
     implementation(platform(BillsOfMaterials.COMPOSE))
     implementation(Libraries.COMPOSE_UI)
+    implementation(Libraries.COMPOSE_MATERIAL)
 
     implementation(Libraries.DAGGER)
 

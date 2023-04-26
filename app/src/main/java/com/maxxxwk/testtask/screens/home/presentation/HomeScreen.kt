@@ -34,8 +34,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.maxxxwk.android.R
+import com.maxxxwk.android.ui.components.CommonButton
 import com.maxxxwk.testtask.screens.home.domain.MenuItem
-import com.maxxxwk.testtask.ui.components.CommonButton
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable

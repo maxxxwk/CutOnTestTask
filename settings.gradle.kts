@@ -1,5 +1,8 @@
 @file:Suppress("UnstableApiUsage")
 
+include(":feature:init")
+
+
 include(":data:local-preferences")
 
 

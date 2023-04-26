@@ -1,6 +1,6 @@
 @file:Suppress("FunctionNaming")
 
-package com.maxxxwk.testtask.screens.init.presentation
+package com.maxxxwk.init.presentation
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,15 +21,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.maxxxwk.android.events.EventEffect
-import com.maxxxwk.android.R
 import com.maxxxwk.android.text.UIText
-import com.maxxxwk.testtask.ui.components.CommonButton
+import com.maxxxwk.android.ui.components.CommonButton
+import com.maxxxwk.init.R
 import kotlinx.coroutines.delay
 
 private const val DELAY_BEFORE_NAVIGATE = 200L
 
 @Composable
-fun InitScreen(
+internal fun InitScreen(
     viewModel: InitScreenViewModel,
     navigateToLoginScreen: () -> Unit,
     navigateToMainScreen: () -> Unit
@@ -59,7 +59,7 @@ fun InitScreen(
     ) {
         Image(
             modifier = Modifier.fillMaxSize(),
-            painter = painterResource(com.maxxxwk.testtask.R.drawable.initialize_screen_bg),
+            painter = painterResource(R.drawable.initialize_screen_bg),
             contentDescription = null,
             contentScale = ContentScale.FillBounds
         )
@@ -69,7 +69,7 @@ fun InitScreen(
                 onRetry = viewModel::onRetry
             )
         } ?: Image(
-            painter = painterResource(com.maxxxwk.testtask.R.drawable.ic_init_screen_logo),
+            painter = painterResource(R.drawable.ic_init_screen_logo),
             contentDescription = null
         )
     }
@@ -87,6 +87,6 @@ private fun InitScreenError(message: UIText, onRetry: () -> Unit) {
             style = MaterialTheme.typography.h2,
             color = MaterialTheme.colors.onBackground
         )
-        CommonButton(text = stringResource(R.string.retry_message), onClick = onRetry)
+        CommonButton(text = stringResource(com.maxxxwk.android.R.string.retry_message), onClick = onRetry)
     }
 }

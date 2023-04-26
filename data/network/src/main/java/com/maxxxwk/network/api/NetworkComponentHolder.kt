@@ -19,7 +19,7 @@ object NetworkComponentHolder : ComponentHolder<NetworkDependencies, NetworkApi>
     }
 
     override fun getApi(): NetworkApi {
-        checkNotNull(component) { "NetworkComponentHolder isn't initialised!" }
+        checkNotNull(component) { "NetworkComponent isn't initialised!" }
         return component!!.api
     }
 

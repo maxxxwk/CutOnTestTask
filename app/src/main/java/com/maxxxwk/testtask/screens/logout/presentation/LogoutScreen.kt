@@ -28,7 +28,7 @@ import com.maxxxwk.android.R
 import com.maxxxwk.android.events.EventEffect
 import com.maxxxwk.android.events.StateEventWithContent
 import com.maxxxwk.android.text.UIText
-import com.maxxxwk.testtask.ui.components.CommonButton
+import com.maxxxwk.android.ui.components.CommonButton
 
 @Composable
 fun LogoutScreen(viewModel: LogoutScreenViewModel, onBack: () -> Unit, closeApp: () -> Unit) {

@@ -38,8 +38,8 @@ import androidx.compose.ui.unit.dp
 import com.maxxxwk.android.events.EventEffect
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.R
+import com.maxxxwk.android.ui.components.CommonButton
 import com.maxxxwk.testtask.screens.auth.presentation.components.CredentialsTextField
-import com.maxxxwk.testtask.ui.components.CommonButton
 
 @Composable
 fun AuthScreen(viewModel: AuthScreenViewModel, navigateToHomeScreen: () -> Unit) {
