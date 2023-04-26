@@ -15,6 +15,7 @@ internal class NetworkStateRepositoryImpl @Inject constructor(
     private val connectivityManager: ConnectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
+    @Suppress("NestedBlockDepth", "DEPRECATION")
     override fun getCurrentNetworkState(): NetworkState =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             connectivityManager.activeNetwork?.let {

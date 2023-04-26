@@ -18,7 +18,7 @@ import androidx.compose.material.Checkbox
 import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.LocalMinimumTouchTargetEnforcement
+import androidx.compose.material.LocalMinimumInteractiveComponentEnforcement
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -207,7 +207,7 @@ private fun ColumnScope.AuthForm(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
-            CompositionLocalProvider(LocalMinimumTouchTargetEnforcement provides false) {
+            CompositionLocalProvider(LocalMinimumInteractiveComponentEnforcement provides false) {
                 Checkbox(
                     checked = rememberMe,
                     onCheckedChange = onChangeRememberMeState,
