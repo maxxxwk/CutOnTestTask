@@ -1,4 +1,4 @@
-package com.maxxxwk.testtask.screens.logout.presentation
+package com.maxxxwk.logout.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.maxxxwk.android.events.consumed
@@ -6,11 +6,11 @@ import com.maxxxwk.android.events.triggered
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.viewmodel.BaseViewModel
 import com.maxxxwk.android.R
-import com.maxxxwk.testtask.screens.logout.domain.LogoutRepository
+import com.maxxxwk.logout.domain.LogoutRepository
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
-class LogoutScreenViewModel @Inject constructor(private val logoutRepository: LogoutRepository) :
+internal class LogoutScreenViewModel @Inject constructor(private val logoutRepository: LogoutRepository) :
     BaseViewModel<LogoutScreenState, LogoutScreenIntent>(LogoutScreenState.Pending()) {
 
     fun onLogout() = viewModelScope.launch {

@@ -1,13 +1,13 @@
-package com.maxxxwk.testtask.screens.logout.data
+package com.maxxxwk.logout.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.local_preferences.api.AuthTokenManager
+import com.maxxxwk.logout.domain.LogoutRepository
 import com.maxxxwk.network.api.NetworkApi
-import com.maxxxwk.testtask.screens.logout.domain.LogoutRepository
 import javax.inject.Inject
 import kotlinx.coroutines.withContext
 
-class LogoutRepositoryImpl @Inject constructor(
+internal class LogoutRepositoryImpl @Inject constructor(
     private val apiService: NetworkApi,
     private val dispatchersProvider: DispatchersProvider,
     private val authTokenManager: AuthTokenManager

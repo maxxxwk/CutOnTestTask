@@ -1,6 +1,7 @@
 package com.maxxxwk.local_preferences.auth
 
 import android.content.Context
+import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -26,16 +27,13 @@ internal class AuthTokenManagerImpl @Inject constructor(
 
     override suspend fun saveToken(token: String): Unit = withContext(dispatchersProvider.io) {
         cachedToken = token
-        context.dataStore.edit { preferences ->
-            preferences[authTokenKey] = token
-        }
+        context.dataStore.edit { it[authTokenKey] = token }
     }
 
     override suspend fun clearToken(): Unit = withContext(dispatchersProvider.io) {
         cachedToken = ""
-        context.dataStore.edit { preferences ->
-            preferences[authTokenKey] = ""
-        }
+        context.dataStore.edit { it[authTokenKey] = "" }
+        Log.d("wtf", "clearToken(${context.dataStore.data.map { it[authTokenKey] }.first()})")
     }
 
     override suspend fun getToken(): String = withContext(dispatchersProvider.io) {

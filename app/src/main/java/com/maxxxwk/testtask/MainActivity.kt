@@ -12,8 +12,9 @@ import com.maxxxwk.auth.api.AuthScreenComponentHolder
 import com.maxxxwk.auth.api.AuthScreenDependencies
 import com.maxxxwk.init.api.InitScreenComponentHolder
 import com.maxxxwk.init.api.InitScreenDependencies
+import com.maxxxwk.logout.api.LogoutScreenComponentHolder
+import com.maxxxwk.logout.api.LogoutScreenDependencies
 import com.maxxxwk.testtask.navigation.Navigation
-import com.maxxxwk.testtask.navigation.NavigationRoute
 import com.maxxxwk.testtask.ui.theme.CutOnTheme
 import javax.inject.Inject
 
@@ -28,11 +29,15 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var authScreenDependencies: AuthScreenDependencies
 
+    @Inject
+    lateinit var logoutScreenDependencies: LogoutScreenDependencies
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as App).component.inject(this)
         InitScreenComponentHolder.init(initScreenDependencies)
         AuthScreenComponentHolder.init(authScreenDependencies)
+        LogoutScreenComponentHolder.init(logoutScreenDependencies)
         setContent {
             CutOnTheme {
                 Surface(
@@ -40,9 +45,8 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.primary
                 ) {
                     Navigation(
-                        startDestination = NavigationRoute.INIT.route,
                         viewModelFactory = viewModelFactory,
-                        closeApp = { finishAndRemoveTask() }
+                        closeApp = { error("closed app") /* todo close app without error */ }
                     )
                 }
             }

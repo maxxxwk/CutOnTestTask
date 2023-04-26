@@ -8,19 +8,24 @@ import okhttp3.Response
 import retrofit2.Invocation
 
 internal class AuthInterceptor @Inject constructor(
-    private val authTokenManager: NetworkSettingsManager
+    private val networkSettingsManager: NetworkSettingsManager
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val isNeedAuth = chain.request().tag(Invocation::class.java)?.method()
             ?.getAnnotation(Auth::class.java) != null
-
+        val request = chain.request()
         return chain.proceed(
             if (isNeedAuth) {
                 chain.request()
                     .newBuilder()
                     .url(
-                        chain.request().url.newBuilder()
-                            .addQueryParameter("token", runBlocking { authTokenManager.getAuthToken() }).build()
+                        request.url.newBuilder()
+                            .addQueryParameter(
+                                name = "token",
+                                value = runBlocking {
+                                    networkSettingsManager.getAuthToken()
+                                }
+                            ).build()
                     ).build()
             } else {
                 chain.request()

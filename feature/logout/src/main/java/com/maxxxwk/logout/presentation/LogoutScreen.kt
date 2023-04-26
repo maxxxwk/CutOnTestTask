@@ -1,6 +1,6 @@
 @file:Suppress("FunctionNaming")
 
-package com.maxxxwk.testtask.screens.logout.presentation
+package com.maxxxwk.logout.presentation
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -31,7 +31,7 @@ import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.ui.components.CommonButton
 
 @Composable
-fun LogoutScreen(viewModel: LogoutScreenViewModel, onBack: () -> Unit, closeApp: () -> Unit) {
+internal fun LogoutScreen(viewModel: LogoutScreenViewModel, onBack: () -> Unit, closeApp: () -> Unit) {
     val state by viewModel.state.collectAsState()
     Column(
         modifier = Modifier

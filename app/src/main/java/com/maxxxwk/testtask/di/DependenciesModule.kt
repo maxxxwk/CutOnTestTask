@@ -5,6 +5,7 @@ import com.maxxxwk.auth.api.AuthScreenDependencies
 import com.maxxxwk.init.api.InitScreenDependencies
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.local_preferences.api.AuthTokenManager
+import com.maxxxwk.logout.api.LogoutScreenDependencies
 import com.maxxxwk.network.api.NetworkApi
 import com.maxxxwk.testtask.network.url.DynamicURLManager
 import dagger.Module
@@ -41,6 +42,19 @@ class DependenciesModule {
         authTokenManager: AuthTokenManager
     ): AuthScreenDependencies {
         return object : AuthScreenDependencies {
+            override val dispatchersProvider: DispatchersProvider = dispatchersProvider
+            override val networkApi: NetworkApi = networkApi
+            override val authTokenManager: AuthTokenManager = authTokenManager
+        }
+    }
+
+    @Provides
+    fun provideLogoutScreenDependencies(
+        dispatchersProvider: DispatchersProvider,
+        networkApi: NetworkApi,
+        authTokenManager: AuthTokenManager
+    ): LogoutScreenDependencies {
+        return object : LogoutScreenDependencies {
             override val dispatchersProvider: DispatchersProvider = dispatchersProvider
             override val networkApi: NetworkApi = networkApi
             override val authTokenManager: AuthTokenManager = authTokenManager

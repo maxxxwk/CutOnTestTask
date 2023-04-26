@@ -7,16 +7,11 @@ import com.maxxxwk.testtask.screens.home.data.MenuItemsRepositoryImpl
 import com.maxxxwk.testtask.screens.home.data.UserInfoRepositoryImpl
 import com.maxxxwk.testtask.screens.home.domain.MenuItemsRepository
 import com.maxxxwk.testtask.screens.home.domain.UserInfoRepository
-import com.maxxxwk.testtask.screens.logout.data.LogoutRepositoryImpl
-import com.maxxxwk.testtask.screens.logout.domain.LogoutRepository
 import dagger.Binds
 import dagger.Module
 
 @Module
 interface RepositoryModule {
-
-    @Binds
-    fun bindLogoutRepository(logoutRepositoryImpl: LogoutRepositoryImpl): LogoutRepository
 
     @Binds
     fun bindMenuItemsRepository(menuItemsRepositoryImpl: MenuItemsRepositoryImpl): MenuItemsRepository

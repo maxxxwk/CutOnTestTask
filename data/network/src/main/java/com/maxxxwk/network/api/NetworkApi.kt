@@ -24,7 +24,9 @@ interface NetworkApi {
 
     @GET("app/version/latest/")
     @DynamicURL
-    suspend fun getAppVersionInfo(@Query("v") v: Int = BUILD_NUMBER): AppVersionInfoResponse
+    suspend fun getAppVersionInfo(
+        @Query("v") v: Int = BUILD_NUMBER
+    ): AppVersionInfoResponse
 
     @Suppress("LongParameterList")
     @POST("users/login/")

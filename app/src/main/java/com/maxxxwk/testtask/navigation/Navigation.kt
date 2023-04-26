@@ -9,23 +9,22 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.maxxxwk.auth.api.AuthScreenComponentHolder
 import com.maxxxwk.init.api.InitScreenComponentHolder
+import com.maxxxwk.logout.api.LogoutScreenComponentHolder
 import com.maxxxwk.testtask.screens.catalog.presentation.CatalogScreen
 import com.maxxxwk.testtask.screens.home.presentation.HomeScreen
-import com.maxxxwk.testtask.screens.logout.presentation.LogoutScreen
 import com.maxxxwk.testtask.ui.components.BottomNavigationBar
 
 
 @Suppress("FunctionNaming")
 @Composable
 fun Navigation(
-    startDestination: String,
     viewModelFactory: ViewModelProvider.Factory,
     closeApp: () -> Unit
 ) {
     val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = startDestination
+        startDestination = NavigationRoute.INIT.route
     ) {
         composable(NavigationRoute.INIT.route) {
             InitScreenComponentHolder.getApi().Screen(
@@ -72,9 +71,8 @@ fun Navigation(
             composable(BottomNavigationRoute.SETTINGS.route) {}
         }
         composable(NavigationRoute.LOGOUT.route) {
-            LogoutScreen(
-                viewModel = viewModel(factory = viewModelFactory),
-                onBack = { navController.popBackStack() },
+            LogoutScreenComponentHolder.getApi().Screen(
+                onBack = navController::popBackStack,
                 closeApp = closeApp
             )
         }
