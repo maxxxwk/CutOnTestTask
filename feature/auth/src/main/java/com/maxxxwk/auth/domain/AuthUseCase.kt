@@ -1,9 +1,9 @@
-package com.maxxxwk.testtask.screens.auth.domain
+package com.maxxxwk.auth.domain
 
-import com.maxxxwk.testtask.screens.auth.domain.models.Credentials
+import com.maxxxwk.auth.domain.models.Credentials
 import javax.inject.Inject
 
-class AuthUseCase @Inject constructor(
+internal class AuthUseCase @Inject constructor(
     private val authRepository: AuthRepository,
     private val deviceInfoRepository: DeviceInfoRepository
 ) {

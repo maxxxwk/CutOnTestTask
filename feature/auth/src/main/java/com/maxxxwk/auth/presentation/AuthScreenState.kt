@@ -1,10 +1,10 @@
-package com.maxxxwk.testtask.screens.auth.presentation
+package com.maxxxwk.auth.presentation
 
 import com.maxxxwk.android.events.StateEventWithContent
 import com.maxxxwk.android.events.consumed
 import com.maxxxwk.android.text.UIText
 
-sealed interface AuthScreenState {
+internal sealed interface AuthScreenState {
     object Loading : AuthScreenState
     data class AuthForm(
         val login: UIText = UIText.DynamicText(""),

@@ -1,4 +1,4 @@
-package com.maxxxwk.testtask.screens.auth.presentation.components
+package com.maxxxwk.auth.presentation.components
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 
 @Suppress("LongParameterList", "FunctionNaming")
 @Composable
-fun CredentialsTextField(
+internal fun CredentialsTextField(
     modifier: Modifier = Modifier,
     keyboardType: KeyboardType,
     onAction: KeyboardActionScope.() -> Unit,

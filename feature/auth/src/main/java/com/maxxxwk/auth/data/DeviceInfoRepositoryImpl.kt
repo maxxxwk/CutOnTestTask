@@ -1,11 +1,11 @@
-package com.maxxxwk.testtask.screens.auth.data
+package com.maxxxwk.auth.data
 
 import android.os.Build
-import com.maxxxwk.testtask.screens.auth.domain.DeviceInfoRepository
-import com.maxxxwk.testtask.screens.auth.domain.models.DeviceInfo
+import com.maxxxwk.auth.domain.DeviceInfoRepository
+import com.maxxxwk.auth.domain.models.DeviceInfo
 import javax.inject.Inject
 
-class DeviceInfoRepositoryImpl @Inject constructor() : DeviceInfoRepository {
+internal class DeviceInfoRepositoryImpl @Inject constructor() : DeviceInfoRepository {
     override fun getDeviceInfo(): DeviceInfo {
         return DeviceInfo(
             devman = Build.MANUFACTURER,

@@ -1,11 +1,5 @@
 package com.maxxxwk.testtask.di
 
-import com.maxxxwk.testtask.screens.auth.data.AppInfoRepositoryImpl
-import com.maxxxwk.testtask.screens.auth.data.AuthRepositoryImpl
-import com.maxxxwk.testtask.screens.auth.data.DeviceInfoRepositoryImpl
-import com.maxxxwk.testtask.screens.auth.domain.AppInfoRepository
-import com.maxxxwk.testtask.screens.auth.domain.AuthRepository
-import com.maxxxwk.testtask.screens.auth.domain.DeviceInfoRepository
 import com.maxxxwk.testtask.screens.catalog.data.BrandCatalogRepositoryImpl
 import com.maxxxwk.testtask.screens.catalog.domain.BrandCatalogRepository
 import com.maxxxwk.testtask.screens.home.data.FakeMenuItemsRepositoryImpl
@@ -20,15 +14,6 @@ import dagger.Module
 
 @Module
 interface RepositoryModule {
-
-    @Binds
-    fun bindAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
-
-    @Binds
-    fun bindDeviceInfoRepository(deviceInfoRepositoryImpl: DeviceInfoRepositoryImpl): DeviceInfoRepository
-
-    @Binds
-    fun bindAppInfoRepository(appInfoRepositoryImpl: AppInfoRepositoryImpl): AppInfoRepository
 
     @Binds
     fun bindLogoutRepository(logoutRepositoryImpl: LogoutRepositoryImpl): LogoutRepository

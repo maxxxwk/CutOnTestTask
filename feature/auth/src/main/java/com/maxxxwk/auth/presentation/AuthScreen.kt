@@ -1,6 +1,6 @@
 @file:Suppress("FunctionNaming")
 
-package com.maxxxwk.testtask.screens.auth.presentation
+package com.maxxxwk.auth.presentation
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
@@ -39,10 +39,10 @@ import com.maxxxwk.android.events.EventEffect
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.R
 import com.maxxxwk.android.ui.components.CommonButton
-import com.maxxxwk.testtask.screens.auth.presentation.components.CredentialsTextField
+import com.maxxxwk.auth.presentation.components.CredentialsTextField
 
 @Composable
-fun AuthScreen(viewModel: AuthScreenViewModel, navigateToHomeScreen: () -> Unit) {
+internal fun AuthScreen(viewModel: AuthScreenViewModel, navigateToHomeScreen: () -> Unit) {
     val state by viewModel.state.collectAsState()
     val context = LocalContext.current
     when (state) {

@@ -1,14 +1,14 @@
-package com.maxxxwk.testtask.screens.auth.data
+package com.maxxxwk.auth.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.network.api.NetworkApi
-import com.maxxxwk.testtask.screens.auth.domain.AppInfoRepository
-import com.maxxxwk.testtask.screens.auth.domain.models.AppInfo
-import com.maxxxwk.testtask.screens.auth.domain.models.AppInfoMessageType
+import com.maxxxwk.auth.domain.AppInfoRepository
+import com.maxxxwk.auth.domain.models.AppInfo
+import com.maxxxwk.auth.domain.models.AppInfoMessageType
 import javax.inject.Inject
 import kotlinx.coroutines.withContext
 
-class AppInfoRepositoryImpl @Inject constructor(
+internal class AppInfoRepositoryImpl @Inject constructor(
     private val apiService: NetworkApi,
     private val dispatchersProvider: DispatchersProvider
 ) : AppInfoRepository {

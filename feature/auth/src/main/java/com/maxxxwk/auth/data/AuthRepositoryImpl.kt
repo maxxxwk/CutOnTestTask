@@ -1,16 +1,16 @@
-package com.maxxxwk.testtask.screens.auth.data
+package com.maxxxwk.auth.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.local_preferences.api.AuthTokenManager
 import com.maxxxwk.network.api.NetworkApi
-import com.maxxxwk.testtask.screens.auth.domain.AuthRepository
-import com.maxxxwk.testtask.screens.auth.domain.models.Credentials
-import com.maxxxwk.testtask.screens.auth.domain.models.DeviceInfo
+import com.maxxxwk.auth.domain.AuthRepository
+import com.maxxxwk.auth.domain.models.Credentials
+import com.maxxxwk.auth.domain.models.DeviceInfo
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AuthRepositoryImpl @Inject constructor(
+internal class AuthRepositoryImpl @Inject constructor(
     private val tokenManager: AuthTokenManager,
     private val apiService: NetworkApi,
     private val dispatchersProvider: DispatchersProvider

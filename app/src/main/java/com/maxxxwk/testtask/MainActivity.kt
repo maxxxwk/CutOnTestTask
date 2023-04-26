@@ -8,6 +8,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.ViewModelProvider
+import com.maxxxwk.auth.api.AuthScreenComponentHolder
+import com.maxxxwk.auth.api.AuthScreenDependencies
 import com.maxxxwk.init.api.InitScreenComponentHolder
 import com.maxxxwk.init.api.InitScreenDependencies
 import com.maxxxwk.testtask.navigation.Navigation
@@ -23,10 +25,14 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var initScreenDependencies: InitScreenDependencies
 
+    @Inject
+    lateinit var authScreenDependencies: AuthScreenDependencies
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as App).component.inject(this)
         InitScreenComponentHolder.init(initScreenDependencies)
+        AuthScreenComponentHolder.init(authScreenDependencies)
         setContent {
             CutOnTheme {
                 Surface(

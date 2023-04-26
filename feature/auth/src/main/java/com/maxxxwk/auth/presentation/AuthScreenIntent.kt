@@ -1,8 +1,8 @@
-package com.maxxxwk.testtask.screens.auth.presentation
+package com.maxxxwk.auth.presentation
 
 import androidx.annotation.StringRes
 
-sealed interface AuthScreenIntent {
+internal sealed interface AuthScreenIntent {
     data class InputLogin(val value: String) : AuthScreenIntent
     data class InputPassword(val value: String) : AuthScreenIntent
     data class LoadingFinished(@StringRes val appInfoMessageStrId: Int?) : AuthScreenIntent

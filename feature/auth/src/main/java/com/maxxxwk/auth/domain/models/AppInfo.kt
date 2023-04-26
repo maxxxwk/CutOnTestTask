@@ -1,9 +1,9 @@
-package com.maxxxwk.testtask.screens.auth.domain.models
+package com.maxxxwk.auth.domain.models
 
-data class AppInfo(
+internal data class AppInfo(
     val messageType: AppInfoMessageType = AppInfoMessageType.NO_MESSAGE
 )
 
-enum class AppInfoMessageType {
+internal enum class AppInfoMessageType {
     AVAILABLE_UPDATE, UPDATE_NEEDED, NO_MESSAGE
 }

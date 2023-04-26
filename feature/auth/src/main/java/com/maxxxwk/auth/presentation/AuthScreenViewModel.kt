@@ -1,4 +1,4 @@
-package com.maxxxwk.testtask.screens.auth.presentation
+package com.maxxxwk.auth.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.maxxxwk.android.events.consumed
@@ -6,15 +6,15 @@ import com.maxxxwk.android.events.triggered
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.viewmodel.BaseViewModel
 import com.maxxxwk.android.R
-import com.maxxxwk.testtask.screens.auth.domain.AppInfoRepository
-import com.maxxxwk.testtask.screens.auth.domain.AuthUseCase
-import com.maxxxwk.testtask.screens.auth.domain.models.AppInfoMessageType
+import com.maxxxwk.auth.domain.AppInfoRepository
+import com.maxxxwk.auth.domain.AuthUseCase
+import com.maxxxwk.auth.domain.models.AppInfoMessageType
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 
-class AuthScreenViewModel @Inject constructor(
+internal class AuthScreenViewModel @Inject constructor(
     private val authUseCase: AuthUseCase,
     private val appInfoRepository: AppInfoRepository
 ) : BaseViewModel<AuthScreenState, AuthScreenIntent>(AuthScreenState.Loading) {

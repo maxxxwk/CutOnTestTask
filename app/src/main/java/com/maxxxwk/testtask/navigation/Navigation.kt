@@ -7,8 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import com.maxxxwk.auth.api.AuthScreenComponentHolder
 import com.maxxxwk.init.api.InitScreenComponentHolder
-import com.maxxxwk.testtask.screens.auth.presentation.AuthScreen
 import com.maxxxwk.testtask.screens.catalog.presentation.CatalogScreen
 import com.maxxxwk.testtask.screens.home.presentation.HomeScreen
 import com.maxxxwk.testtask.screens.logout.presentation.LogoutScreen
@@ -40,8 +40,7 @@ fun Navigation(
             )
         }
         composable(NavigationRoute.LOGIN.route) {
-            AuthScreen(
-                viewModel = viewModel(factory = viewModelFactory),
+            AuthScreenComponentHolder.getApi().Screen(
                 navigateToHomeScreen = {
                     navController.popBackStack()
                     navController.navigate(NavigationRoute.MAIN.route)
