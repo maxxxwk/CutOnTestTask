@@ -23,6 +23,8 @@ class LocalPreferencesModule {
                 override val context: Context = context
             }
         )
-        return LocalPreferencesComponentHolder.getApi().authTokenManager
+        return LocalPreferencesComponentHolder.getApi().authTokenManager.also {
+            LocalPreferencesComponentHolder.reset()
+        }
     }
 }

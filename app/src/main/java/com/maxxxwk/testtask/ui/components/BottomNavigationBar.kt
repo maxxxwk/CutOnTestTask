@@ -14,26 +14,30 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.NavBackStackEntry
+import com.maxxxwk.catalog.api.CatalogScreenDependencies
+import com.maxxxwk.testtask.navigation.BottomNavigationController
 import com.maxxxwk.testtask.navigation.BottomNavigationRoute
-import com.maxxxwk.testtask.navigation.navigate
 
 @Suppress("FunctionNaming")
 @Composable
-fun BottomNavigationBar(navController: NavController) {
+fun BottomNavigationBar(
+    bottomNavigationController: BottomNavigationController,
+    backStackEntryState: State<NavBackStackEntry?>
+) {
     BottomNavigation(
         modifier = Modifier.clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)),
         backgroundColor = MaterialTheme.colors.background,
         contentColor = MaterialTheme.colors.onPrimary
     ) {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val navBackStackEntry by backStackEntryState
         val currentRoute = navBackStackEntry?.destination?.route
         BottomNavigationRoute.values().forEach {
             val isSelected = currentRoute == it.route
@@ -59,7 +63,15 @@ fun BottomNavigationBar(navController: NavController) {
                 selected = isSelected,
                 selectedContentColor = MaterialTheme.colors.secondary,
                 unselectedContentColor = MaterialTheme.colors.onPrimary,
-                onClick = { navController.navigate(bottomNavigationRoute = it) }
+                onClick = {
+                    when (it) {
+                        BottomNavigationRoute.HOME -> bottomNavigationController.navigateToHome()
+                        BottomNavigationRoute.BRANDS_CATALOG -> bottomNavigationController.navigateToBrandsCatalog()
+                        BottomNavigationRoute.COINS -> bottomNavigationController.navigateToCoins()
+                        BottomNavigationRoute.CUSTOMER_SERVICE -> bottomNavigationController.navigateToCustomerService()
+                        BottomNavigationRoute.SETTINGS -> bottomNavigationController.navigateToSettings()
+                    }
+                }
             )
         }
     }

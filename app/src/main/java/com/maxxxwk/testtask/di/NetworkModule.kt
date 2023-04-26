@@ -29,7 +29,9 @@ class NetworkModule {
                     }
             }
         )
-        return NetworkComponentHolder.getApi()
+        return NetworkComponentHolder.getApi().also {
+            NetworkComponentHolder.reset()
+        }
     }
 
     @Provides
