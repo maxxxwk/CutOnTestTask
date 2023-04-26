@@ -2,6 +2,7 @@ package com.maxxxwk.testtask.di
 
 import android.content.Context
 import com.maxxxwk.auth.api.AuthScreenDependencies
+import com.maxxxwk.catalog.api.CatalogScreenDependencies
 import com.maxxxwk.home.api.HomeScreenDependencies
 import com.maxxxwk.init.api.InitScreenDependencies
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
@@ -68,6 +69,17 @@ class DependenciesModule {
         networkApi: NetworkApi
     ): HomeScreenDependencies {
         return object : HomeScreenDependencies {
+            override val dispatchersProvider: DispatchersProvider = dispatchersProvider
+            override val networkApi: NetworkApi = networkApi
+        }
+    }
+
+    @Provides
+    fun provideCatalogScreenDependencies(
+        dispatchersProvider: DispatchersProvider,
+        networkApi: NetworkApi
+    ): CatalogScreenDependencies {
+        return object : CatalogScreenDependencies {
             override val dispatchersProvider: DispatchersProvider = dispatchersProvider
             override val networkApi: NetworkApi = networkApi
         }

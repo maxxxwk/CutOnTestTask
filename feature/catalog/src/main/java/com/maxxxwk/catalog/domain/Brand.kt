@@ -1,6 +1,6 @@
-package com.maxxxwk.testtask.screens.catalog.domain
+package com.maxxxwk.catalog.domain
 
-data class Brand(
+internal data class Brand(
     val brandId: Int,
     val brandName: String,
     val brandImage: String

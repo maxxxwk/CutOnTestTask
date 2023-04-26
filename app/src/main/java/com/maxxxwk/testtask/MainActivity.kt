@@ -7,9 +7,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModelProvider
 import com.maxxxwk.auth.api.AuthScreenComponentHolder
 import com.maxxxwk.auth.api.AuthScreenDependencies
+import com.maxxxwk.catalog.api.CatalogScreenComponentHolder
+import com.maxxxwk.catalog.api.CatalogScreenDependencies
 import com.maxxxwk.home.api.HomeScreenComponentHolder
 import com.maxxxwk.home.api.HomeScreenDependencies
 import com.maxxxwk.init.api.InitScreenComponentHolder
@@ -23,9 +24,6 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    @Inject
     lateinit var initScreenDependencies: InitScreenDependencies
 
     @Inject
@@ -37,6 +35,9 @@ class MainActivity : ComponentActivity() {
     @Inject
     lateinit var homeScreenDependencies: HomeScreenDependencies
 
+    @Inject
+    lateinit var catalogScreenDependencies: CatalogScreenDependencies
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (application as App).component.inject(this)
@@ -44,6 +45,7 @@ class MainActivity : ComponentActivity() {
         AuthScreenComponentHolder.init(authScreenDependencies)
         LogoutScreenComponentHolder.init(logoutScreenDependencies)
         HomeScreenComponentHolder.init(homeScreenDependencies)
+        CatalogScreenComponentHolder.init(catalogScreenDependencies)
         setContent {
             CutOnTheme {
                 Surface(
@@ -51,7 +53,6 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.primary
                 ) {
                     Navigation(
-                        viewModelFactory = viewModelFactory,
                         closeApp = { error("closed app") /* todo close app without error */ }
                     )
                 }

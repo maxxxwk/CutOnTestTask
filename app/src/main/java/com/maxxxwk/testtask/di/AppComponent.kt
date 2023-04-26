@@ -9,11 +9,8 @@ import javax.inject.Singleton
 @Component(
     modules = [
         DispatchersModule::class,
-        ViewModelModule::class,
-        ViewModelFactoryModule::class,
         NetworkModule::class,
         LocalPreferencesModule::class,
-        RepositoryModule::class,
         DependenciesModule::class
     ]
 )

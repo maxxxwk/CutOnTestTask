@@ -1,28 +1,18 @@
 @file:Suppress("UnstableApiUsage")
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.20"
 }
 
 android {
-    namespace = "com.maxxxwk.testtask"
+    namespace = "com.maxxxwk.catalog"
     compileSdk = Versions.COMPILE_SDK
 
     defaultConfig {
-        applicationId = "com.maxxxwk.testtask"
         minSdk = Versions.MIN_SDK
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
-
-        vectorDrawables.useSupportLibrary = true
-
-        buildConfigField("String", "BASE_URL", "\"https://cr-test-ribu2uaqea-ey.a.run.app/\"")
-        buildConfigField("String", "APP_NAME", "\"cuton\"")
-        buildConfigField("int", "BUILD_NUMBER", "36")
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -41,7 +31,6 @@ android {
     kotlinOptions.jvmTarget = "1.8"
     buildFeatures.compose = true
     composeOptions.kotlinCompilerExtensionVersion = Versions.COMPOSE_KOTLIN_COMPILER_EXTENCION
-    packagingOptions.resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
 }
 
 dependencies {
@@ -53,27 +42,15 @@ dependencies {
     implementation(Libraries.COMPOSE_MATERIAL)
     implementation(Libraries.COMPOSE_UI_TOOLING_PREVIEW)
     debugImplementation(DebugLibraries.COMPOSE_UI_TOOLING)
-    implementation(Libraries.COMPOSE_NAVIGATION)
-    implementation(Libraries.ACTIVITY_COMPOSE)
-
-    implementation(Libraries.COIL)
 
     implementation(Libraries.DAGGER)
     kapt(KaptCompilers.DAGGER)
 
-    implementation(Libraries.RETROFIT)
-
     implementation(Libraries.KOTLINX_COLLECTIONS_IMMUTABLE)
 
-    implementation(project(":core:kotlin"))
+    implementation(Libraries.COIL)
+
     implementation(project(":core:android"))
-
+    implementation(project(":core:kotlin"))
     implementation(project(":data:network"))
-    implementation(project(":data:local-preferences"))
-
-    implementation(project(":feature:init"))
-    implementation(project(":feature:auth"))
-    implementation(project(":feature:logout"))
-    implementation(project(":feature:home"))
-    implementation(project(":feature:catalog"))
 }

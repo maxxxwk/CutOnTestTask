@@ -1,6 +1,6 @@
 @file:Suppress("FunctionNaming")
 
-package com.maxxxwk.testtask.screens.catalog.presentation
+package com.maxxxwk.catalog.presentation
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
@@ -36,12 +36,12 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.R
-import com.maxxxwk.testtask.screens.catalog.domain.Brand
+import com.maxxxwk.catalog.domain.Brand
 import kotlinx.collections.immutable.ImmutableList
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun CatalogScreen(viewModel: CatalogScreenViewModel, bottomBar: @Composable () -> Unit) {
+internal fun CatalogScreen(viewModel: CatalogScreenViewModel, bottomBar: @Composable () -> Unit) {
     val state by viewModel.state.collectAsState()
     Scaffold(
         bottomBar = bottomBar,

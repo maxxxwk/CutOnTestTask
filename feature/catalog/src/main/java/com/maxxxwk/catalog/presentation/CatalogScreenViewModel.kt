@@ -1,15 +1,15 @@
-package com.maxxxwk.testtask.screens.catalog.presentation
+package com.maxxxwk.catalog.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.viewmodel.BaseViewModel
 import com.maxxxwk.android.R
-import com.maxxxwk.testtask.screens.catalog.domain.BrandCatalogRepository
+import com.maxxxwk.catalog.domain.BrandCatalogRepository
 import javax.inject.Inject
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 
-class CatalogScreenViewModel @Inject constructor(
+internal class CatalogScreenViewModel @Inject constructor(
     private val catalogRepository: BrandCatalogRepository
 ) : BaseViewModel<CatalogScreenState, CatalogScreenIntent>(CatalogScreenState.Loading) {
 
