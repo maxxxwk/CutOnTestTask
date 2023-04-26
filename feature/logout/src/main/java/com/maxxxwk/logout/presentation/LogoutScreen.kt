@@ -16,7 +16,6 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.maxxxwk.android.R
 import com.maxxxwk.android.events.EventEffect
 import com.maxxxwk.android.events.StateEventWithContent
@@ -31,8 +31,12 @@ import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.ui.components.CommonButton
 
 @Composable
-internal fun LogoutScreen(viewModel: LogoutScreenViewModel, onBack: () -> Unit, closeApp: () -> Unit) {
-    val state by viewModel.state.collectAsState()
+internal fun LogoutScreen(
+    viewModel: LogoutScreenViewModel,
+    onBack: () -> Unit,
+    closeApp: () -> Unit
+) {
+    val state by viewModel.state.collectAsStateWithLifecycle()
     Column(
         modifier = Modifier
             .fillMaxSize()

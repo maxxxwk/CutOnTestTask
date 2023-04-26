@@ -36,6 +36,7 @@ android {
 dependencies {
     implementation(Libraries.LIFECYCLE_RUNTIME)
     implementation(Libraries.LIFECYCLE_VIEWMODEL_COMPOSE)
+    implementation(Libraries.LIFECYCLE_RUNTIME_COMPOSE)
 
     implementation(platform(BillsOfMaterials.COMPOSE))
     implementation(Libraries.COMPOSE_UI)

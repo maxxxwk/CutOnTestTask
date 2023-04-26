@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,6 +19,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.maxxxwk.android.events.EventEffect
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.ui.components.CommonButton
@@ -34,7 +34,7 @@ internal fun InitScreen(
     navigateToLoginScreen: () -> Unit,
     navigateToMainScreen: () -> Unit
 ) {
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
     EventEffect(
         event = state.navigateToAuthScreenEvent,
         onConsumed = {},
@@ -87,6 +87,9 @@ private fun InitScreenError(message: UIText, onRetry: () -> Unit) {
             style = MaterialTheme.typography.h2,
             color = MaterialTheme.colors.onBackground
         )
-        CommonButton(text = stringResource(com.maxxxwk.android.R.string.retry_message), onClick = onRetry)
+        CommonButton(
+            text = stringResource(com.maxxxwk.android.R.string.retry_message),
+            onClick = onRetry
+        )
     }
 }

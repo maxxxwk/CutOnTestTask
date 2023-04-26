@@ -23,7 +23,6 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,15 +34,16 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.maxxxwk.android.R
 import com.maxxxwk.android.events.EventEffect
 import com.maxxxwk.android.text.UIText
-import com.maxxxwk.android.R
 import com.maxxxwk.android.ui.components.CommonButton
 import com.maxxxwk.auth.presentation.components.CredentialsTextField
 
 @Composable
 internal fun AuthScreen(viewModel: AuthScreenViewModel, navigateToHomeScreen: () -> Unit) {
-    val state by viewModel.state.collectAsState()
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     when (state) {
         is AuthScreenState.AuthForm -> {
