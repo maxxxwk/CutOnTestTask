@@ -1,7 +1,6 @@
 package com.maxxxwk.local_preferences.auth
 
 import android.content.Context
-import android.util.Log
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
@@ -9,7 +8,6 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.maxxxwk.kotlin.di.scopes.FeatureScope
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.local_preferences.api.AuthTokenManager
 import javax.inject.Inject
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
@@ -27,20 +25,19 @@ internal class AuthTokenManagerImpl @Inject constructor(
 
     override suspend fun saveToken(token: String): Unit = withContext(dispatchersProvider.io) {
         cachedToken = token
-        context.dataStore.edit { it[authTokenKey] = token }
+        saveTokenToStore(token)
     }
 
     override suspend fun clearToken(): Unit = withContext(dispatchersProvider.io) {
         cachedToken = ""
-        context.dataStore.edit { it[authTokenKey] = "" }
-        Log.d("wtf", "clearToken(${context.dataStore.data.map { it[authTokenKey] }.first()})")
+        saveTokenToStore("")
     }
 
     override suspend fun getToken(): String = withContext(dispatchersProvider.io) {
         if (cachedToken.isNotEmpty()) {
             return@withContext cachedToken
         } else {
-            val token = context.dataStore.data.map { it[authTokenKey] }.first()
+            val token = getTokenFromStore()
             if (token.isNullOrEmpty()) {
                 error("Token is missing!")
             } else {
@@ -52,7 +49,7 @@ internal class AuthTokenManagerImpl @Inject constructor(
 
     override suspend fun hasToken(): Boolean = withContext(dispatchersProvider.io) {
         if (cachedToken.isNotEmpty()) return@withContext true
-        val token = context.dataStore.data.map { it[authTokenKey] }.first()
+        val token = getTokenFromStore()
         if (!token.isNullOrEmpty()) {
             cachedToken = token
             return@withContext true
@@ -60,4 +57,11 @@ internal class AuthTokenManagerImpl @Inject constructor(
             return@withContext false
         }
     }
+
+    private suspend inline fun saveTokenToStore(token: String) {
+        context.dataStore.edit { it[authTokenKey] = token }
+    }
+
+    private suspend inline fun getTokenFromStore(): String? =
+        context.dataStore.data.map { it[authTokenKey] }.first()
 }

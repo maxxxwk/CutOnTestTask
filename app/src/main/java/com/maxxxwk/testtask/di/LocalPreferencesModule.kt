@@ -2,7 +2,7 @@ package com.maxxxwk.testtask.di
 
 import android.content.Context
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.local_preferences.api.AuthTokenManager
+import com.maxxxwk.local_preferences.auth.AuthTokenManager
 import com.maxxxwk.local_preferences.api.LocalPreferencesComponentHolder
 import com.maxxxwk.local_preferences.api.LocalPreferencesDependencies
 import dagger.Module

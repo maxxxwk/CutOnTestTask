@@ -1,14 +1,14 @@
 package com.maxxxwk.home.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.network.api.NetworkApi
+import com.maxxxwk.network.network.ApiService
 import com.maxxxwk.home.domain.UserInfo
 import com.maxxxwk.home.domain.UserInfoRepository
 import javax.inject.Inject
 import kotlinx.coroutines.withContext
 
 internal class UserInfoRepositoryImpl @Inject constructor(
-    private val apiService: NetworkApi,
+    private val apiService: ApiService,
     private val dispatchersProvider: DispatchersProvider
 ) : UserInfoRepository {
     override suspend fun getUserInfo(): Result<UserInfo> = withContext(dispatchersProvider.io) {

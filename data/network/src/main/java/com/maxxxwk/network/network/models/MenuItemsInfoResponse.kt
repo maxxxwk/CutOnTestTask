@@ -1,4 +1,4 @@
-package com.maxxxwk.network.api.models
+package com.maxxxwk.network.network.models
 
 import kotlinx.serialization.Serializable
 

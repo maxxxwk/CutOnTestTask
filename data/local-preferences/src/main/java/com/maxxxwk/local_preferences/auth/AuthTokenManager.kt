@@ -1,4 +1,4 @@
-package com.maxxxwk.local_preferences.api
+package com.maxxxwk.local_preferences.auth
 
 interface AuthTokenManager {
     suspend fun saveToken(token: String)

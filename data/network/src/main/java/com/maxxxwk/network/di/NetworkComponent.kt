@@ -6,7 +6,7 @@ import com.maxxxwk.network.api.NetworkDependencies
 import dagger.Component
 
 @Component(
-    modules = [ApiModule::class, NetworkModule::class],
+    modules = [ApiModule::class, NetworkModule::class, BindsModule::class],
     dependencies = [NetworkDependencies::class]
 )
 @FeatureScope

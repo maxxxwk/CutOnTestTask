@@ -1,8 +1,8 @@
 package com.maxxxwk.auth.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.local_preferences.api.AuthTokenManager
-import com.maxxxwk.network.api.NetworkApi
+import com.maxxxwk.local_preferences.auth.AuthTokenManager
+import com.maxxxwk.network.network.ApiService
 import com.maxxxwk.auth.domain.AuthRepository
 import com.maxxxwk.auth.domain.models.Credentials
 import com.maxxxwk.auth.domain.models.DeviceInfo
@@ -12,7 +12,7 @@ import kotlinx.coroutines.withContext
 
 internal class AuthRepositoryImpl @Inject constructor(
     private val tokenManager: AuthTokenManager,
-    private val apiService: NetworkApi,
+    private val apiService: ApiService,
     private val dispatchersProvider: DispatchersProvider
 ) : AuthRepository {
     override suspend fun login(

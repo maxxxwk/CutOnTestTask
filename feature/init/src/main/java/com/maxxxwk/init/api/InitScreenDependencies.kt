@@ -1,15 +1,15 @@
 package com.maxxxwk.init.api
 
 import android.content.Context
-import com.maxxxwk.init.data.DynamicURLManager
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.local_preferences.api.AuthTokenManager
-import com.maxxxwk.network.api.NetworkApi
+import com.maxxxwk.local_preferences.auth.AuthTokenManager
+import com.maxxxwk.network.network.ApiService
+import com.maxxxwk.network.url.DynamicURLManager
 
 interface InitScreenDependencies {
     val context: Context
     val dispatchersProvider: DispatchersProvider
-    val networkApi: NetworkApi
+    val apiService: ApiService
     val authTokenManager: AuthTokenManager
     val dynamicURLManager: DynamicURLManager
 }

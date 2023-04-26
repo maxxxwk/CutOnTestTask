@@ -1,9 +1,9 @@
 package com.maxxxwk.home.api
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.network.api.NetworkApi
+import com.maxxxwk.network.network.ApiService
 
 interface HomeScreenDependencies {
     val dispatchersProvider: DispatchersProvider
-    val networkApi: NetworkApi
+    val apiService: ApiService
 }

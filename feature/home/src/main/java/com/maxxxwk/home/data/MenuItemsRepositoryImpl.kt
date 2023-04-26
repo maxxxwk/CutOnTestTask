@@ -1,14 +1,14 @@
 package com.maxxxwk.home.data
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.network.api.NetworkApi
+import com.maxxxwk.network.network.ApiService
 import com.maxxxwk.home.domain.MenuItem
 import com.maxxxwk.home.domain.MenuItemsRepository
 import javax.inject.Inject
 import kotlinx.coroutines.withContext
 
 internal class MenuItemsRepositoryImpl @Inject constructor(
-    private val apiService: NetworkApi,
+    private val apiService: ApiService,
     private val dispatchersProvider: DispatchersProvider
 ) : MenuItemsRepository {
     override suspend fun getMenuItems(): Result<List<MenuItem>> =

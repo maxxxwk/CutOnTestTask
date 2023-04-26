@@ -2,6 +2,7 @@ package com.maxxxwk.network.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.maxxxwk.network.auth.AuthInterceptor
+import com.maxxxwk.network.network.ApiService
 import com.maxxxwk.network.url.DynamicURLInterceptor
 import dagger.Module
 import dagger.Provides
@@ -14,6 +15,11 @@ import retrofit2.Retrofit
 
 @Module
 internal class NetworkModule {
+    @Provides
+    fun provideApiService(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
+    }
+
     @Provides
     fun provideRetrofit(okHttpClient: OkHttpClient, converterFactory: Converter.Factory): Retrofit {
         return Retrofit.Builder()

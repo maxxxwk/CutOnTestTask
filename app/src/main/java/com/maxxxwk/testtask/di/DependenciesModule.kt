@@ -6,10 +6,10 @@ import com.maxxxwk.catalog.api.CatalogScreenDependencies
 import com.maxxxwk.home.api.HomeScreenDependencies
 import com.maxxxwk.init.api.InitScreenDependencies
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.local_preferences.api.AuthTokenManager
+import com.maxxxwk.local_preferences.auth.AuthTokenManager
 import com.maxxxwk.logout.api.LogoutScreenDependencies
-import com.maxxxwk.network.api.NetworkApi
-import com.maxxxwk.testtask.network.url.DynamicURLManager
+import com.maxxxwk.network.network.ApiService
+import com.maxxxwk.network.url.DynamicURLManager
 import dagger.Module
 import dagger.Provides
 
@@ -19,33 +19,28 @@ class DependenciesModule {
     fun provideInitScreenDependencies(
         context: Context,
         dispatchersProvider: DispatchersProvider,
-        networkApi: NetworkApi,
+        apiService: ApiService,
         authTokenManager: AuthTokenManager,
         dynamicURLManager: DynamicURLManager
     ): InitScreenDependencies {
         return object : InitScreenDependencies {
             override val context: Context = context
             override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-            override val networkApi: NetworkApi = networkApi
+            override val apiService: ApiService = apiService
             override val authTokenManager: AuthTokenManager = authTokenManager
-            override val dynamicURLManager: com.maxxxwk.init.data.DynamicURLManager =
-                object : com.maxxxwk.init.data.DynamicURLManager {
-                    override fun saveURL(url: String) {
-                        dynamicURLManager.url = url
-                    }
-                }
+            override val dynamicURLManager: DynamicURLManager = dynamicURLManager
         }
     }
 
     @Provides
     fun provideAuthScreenDependencies(
         dispatchersProvider: DispatchersProvider,
-        networkApi: NetworkApi,
+        apiService: ApiService,
         authTokenManager: AuthTokenManager
     ): AuthScreenDependencies {
         return object : AuthScreenDependencies {
             override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-            override val networkApi: NetworkApi = networkApi
+            override val apiService: ApiService = apiService
             override val authTokenManager: AuthTokenManager = authTokenManager
         }
     }
@@ -53,12 +48,12 @@ class DependenciesModule {
     @Provides
     fun provideLogoutScreenDependencies(
         dispatchersProvider: DispatchersProvider,
-        networkApi: NetworkApi,
+        apiService: ApiService,
         authTokenManager: AuthTokenManager
     ): LogoutScreenDependencies {
         return object : LogoutScreenDependencies {
             override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-            override val networkApi: NetworkApi = networkApi
+            override val apiService: ApiService = apiService
             override val authTokenManager: AuthTokenManager = authTokenManager
         }
     }
@@ -66,22 +61,22 @@ class DependenciesModule {
     @Provides
     fun provideHomeScreenDependencies(
         dispatchersProvider: DispatchersProvider,
-        networkApi: NetworkApi
+        apiService: ApiService
     ): HomeScreenDependencies {
         return object : HomeScreenDependencies {
             override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-            override val networkApi: NetworkApi = networkApi
+            override val apiService: ApiService = apiService
         }
     }
 
     @Provides
     fun provideCatalogScreenDependencies(
         dispatchersProvider: DispatchersProvider,
-        networkApi: NetworkApi
+        apiService: ApiService
     ): CatalogScreenDependencies {
         return object : CatalogScreenDependencies {
             override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-            override val networkApi: NetworkApi = networkApi
+            override val apiService: ApiService = apiService
         }
     }
 }

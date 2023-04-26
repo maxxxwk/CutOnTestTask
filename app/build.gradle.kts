@@ -45,9 +45,6 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.LIFECYCLE_RUNTIME)
-    implementation(Libraries.LIFECYCLE_VIEWMODEL_COMPOSE)
-
     implementation(platform(BillsOfMaterials.COMPOSE))
     implementation(Libraries.COMPOSE_UI)
     implementation(Libraries.COMPOSE_MATERIAL)
@@ -56,17 +53,10 @@ dependencies {
     implementation(Libraries.COMPOSE_NAVIGATION)
     implementation(Libraries.ACTIVITY_COMPOSE)
 
-    implementation(Libraries.COIL)
-
     implementation(Libraries.DAGGER)
     kapt(KaptCompilers.DAGGER)
 
-    implementation(Libraries.RETROFIT)
-
-    implementation(Libraries.KOTLINX_COLLECTIONS_IMMUTABLE)
-
     implementation(project(":core:kotlin"))
-    implementation(project(":core:android"))
 
     implementation(project(":data:network"))
     implementation(project(":data:local-preferences"))

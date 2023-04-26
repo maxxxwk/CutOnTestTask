@@ -7,7 +7,7 @@ import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.viewmodel.BaseViewModel
 import com.maxxxwk.init.domain.InitRepository
 import com.maxxxwk.init.domain.NetworkConnectionAvailabilityUseCase
-import com.maxxxwk.local_preferences.api.AuthTokenManager
+import com.maxxxwk.local_preferences.auth.AuthTokenManager
 import javax.inject.Inject
 import kotlinx.coroutines.launch
 
