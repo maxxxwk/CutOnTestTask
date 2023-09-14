@@ -1,26 +1,25 @@
 package com.maxxxwk.auth.di
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.maxxxwk.auth.api.AuthScreenApi
+import com.maxxxwk.auth.api.AuthScreenComponentHolder
 import com.maxxxwk.auth.presentation.AuthScreen
-import com.maxxxwk.auth.presentation.AuthScreenViewModel
-import com.maxxxwk.kotlin.di.scopes.FeatureScope
-import dagger.Module
-import dagger.Provides
+import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.KoinIsolatedContext
+import org.koin.dsl.module
 
-@Module
-internal class ApiModule {
-    @FeatureScope
-    @Provides
-    fun provideApi(authScreenViewModel: AuthScreenViewModel): AuthScreenApi =
+internal val apiModule = module {
+    single<AuthScreenApi> {
         object : AuthScreenApi {
             @Composable
             override fun Screen(navigateToHomeScreen: () -> Unit) {
-                AuthScreen(
-                    viewModel = viewModel { authScreenViewModel },
-                    navigateToHomeScreen = navigateToHomeScreen
-                )
+                KoinIsolatedContext(checkNotNull(AuthScreenComponentHolder.koinApp)) {
+                    AuthScreen(
+                        viewModel = koinViewModel(),
+                        navigateToHomeScreen = navigateToHomeScreen
+                    )
+                }
             }
         }
+    }
 }

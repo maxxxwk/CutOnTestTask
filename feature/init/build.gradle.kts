@@ -3,7 +3,6 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
 }
 
 android {
@@ -44,10 +43,13 @@ dependencies {
     implementation(Libraries.COMPOSE_UI_TOOLING_PREVIEW)
     debugImplementation(DebugLibraries.COMPOSE_UI_TOOLING)
 
-    implementation(Libraries.DAGGER)
-    kapt(KaptCompilers.DAGGER)
+    implementation(Libraries.KOIN_CORE)
+    implementation(Libraries.KOIN_ANDROID)
+    implementation(Libraries.KOIN_COMPOSE)
 
     implementation(Libraries.KOTLINX_COLLECTIONS_IMMUTABLE)
+
+    implementation(Libraries.COMPOSE_STATE_EVENTS)
 
     implementation(project(":core:android"))
     implementation(project(":core:kotlin"))

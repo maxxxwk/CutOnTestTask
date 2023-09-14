@@ -1,20 +1,19 @@
 package com.maxxxwk.auth.presentation
 
 import androidx.lifecycle.viewModelScope
-import com.maxxxwk.android.events.consumed
-import com.maxxxwk.android.events.triggered
+import com.maxxxwk.android.R
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.viewmodel.BaseViewModel
-import com.maxxxwk.android.R
 import com.maxxxwk.auth.domain.AppInfoRepository
 import com.maxxxwk.auth.domain.AuthUseCase
 import com.maxxxwk.auth.domain.models.AppInfoMessageType
-import javax.inject.Inject
+import de.palm.composestateevents.consumed
+import de.palm.composestateevents.triggered
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
 
-internal class AuthScreenViewModel @Inject constructor(
+internal class AuthScreenViewModel(
     private val authUseCase: AuthUseCase,
     private val appInfoRepository: AppInfoRepository
 ) : BaseViewModel<AuthScreenState, AuthScreenIntent>(AuthScreenState.Loading) {
@@ -61,24 +60,29 @@ internal class AuthScreenViewModel @Inject constructor(
         is AuthScreenIntent.InputLogin -> {
             (state.value as AuthScreenState.AuthForm).copy(login = UIText.DynamicText(intent.value))
         }
+
         is AuthScreenIntent.InputPassword -> {
             (state.value as AuthScreenState.AuthForm).copy(password = UIText.DynamicText(intent.value))
         }
+
         is AuthScreenIntent.LoadingFinished -> {
             intent.appInfoMessageStrId?.let {
                 AuthScreenState.AuthForm(appInfoMessage = UIText.StringResource(it))
             } ?: AuthScreenState.AuthForm()
         }
+
         is AuthScreenIntent.Login -> {
             login(intent.login, intent.password)
             (state.value as AuthScreenState.AuthForm).copy(isLoading = true)
         }
+
         AuthScreenIntent.AuthResultConsumed -> {
             (state.value as AuthScreenState.AuthForm).copy(
                 authResultEvent = consumed(),
                 isLoading = false
             )
         }
+
         is AuthScreenIntent.ShowAuthErrorMessage -> {
             (state.value as AuthScreenState.AuthForm).copy(
                 authResultEvent = triggered(
@@ -86,11 +90,13 @@ internal class AuthScreenViewModel @Inject constructor(
                 )
             )
         }
+
         AuthScreenIntent.NavigateToHomeScreen -> {
             (state.value as AuthScreenState.AuthForm).copy(
                 authResultEvent = triggered(AuthResultEvent.Success)
             )
         }
+
         is AuthScreenIntent.ChangeRememberMeState -> {
             (state.value as AuthScreenState.AuthForm).copy(rememberMe = intent.rememberMe)
         }

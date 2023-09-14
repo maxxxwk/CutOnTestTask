@@ -1,8 +1,6 @@
 package com.maxxxwk.init.domain
 
-import javax.inject.Inject
-
-internal class NetworkConnectionAvailabilityUseCase @Inject constructor(
+internal class NetworkConnectionAvailabilityUseCase(
     private val networkStateRepository: NetworkStateRepository
 ) {
     operator fun invoke() =

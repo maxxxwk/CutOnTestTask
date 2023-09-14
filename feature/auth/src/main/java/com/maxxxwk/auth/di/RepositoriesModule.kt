@@ -6,17 +6,11 @@ import com.maxxxwk.auth.data.DeviceInfoRepositoryImpl
 import com.maxxxwk.auth.domain.AppInfoRepository
 import com.maxxxwk.auth.domain.AuthRepository
 import com.maxxxwk.auth.domain.DeviceInfoRepository
-import dagger.Binds
-import dagger.Module
+import org.koin.core.module.dsl.factoryOf
+import org.koin.dsl.module
 
-@Module
-internal interface RepositoriesModule {
-    @Binds
-    fun bindAppInfoRepository(appInfoRepositoryImpl: AppInfoRepositoryImpl): AppInfoRepository
-
-    @Binds
-    fun bindAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
-
-    @Binds
-    fun bindDeviceInfoRepository(deviceInfoRepositoryImpl: DeviceInfoRepositoryImpl): DeviceInfoRepository
+internal val repositoriesModule = module {
+    factory<AppInfoRepository> { AppInfoRepositoryImpl(get(), get()) }
+    factory<AuthRepository> { AuthRepositoryImpl(get(), get(), get()) }
+    factoryOf<DeviceInfoRepository>(::DeviceInfoRepositoryImpl)
 }

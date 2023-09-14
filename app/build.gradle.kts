@@ -3,7 +3,6 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
@@ -57,8 +56,9 @@ dependencies {
     implementation(Libraries.COMPOSE_NAVIGATION)
     implementation(Libraries.ACTIVITY_COMPOSE)
 
-    implementation(Libraries.DAGGER)
-    kapt(KaptCompilers.DAGGER)
+    implementation(Libraries.KOIN_CORE)
+    implementation(Libraries.KOIN_ANDROID)
+    implementation(Libraries.KOIN_COMPOSE)
 
     implementation(project(":core:kotlin"))
 

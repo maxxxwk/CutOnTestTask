@@ -39,7 +39,5 @@ dependencies {
     implementation(Libraries.COMPOSE_UI)
     implementation(Libraries.COMPOSE_MATERIAL)
 
-    implementation(Libraries.DAGGER)
-
     implementation(Libraries.KOTLINX_COLLECTIONS_IMMUTABLE)
 }

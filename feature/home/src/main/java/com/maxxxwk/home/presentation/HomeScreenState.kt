@@ -6,7 +6,7 @@ import com.maxxxwk.home.domain.UserInfo
 import kotlinx.collections.immutable.ImmutableList
 
 internal sealed interface HomeScreenState {
-    object Loading : HomeScreenState
+    data object Loading : HomeScreenState
     data class Content(
         val userInfo: UserInfo? = null,
         val menuItems: ImmutableList<MenuItem>

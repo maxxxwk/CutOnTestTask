@@ -2,11 +2,8 @@ package com.maxxxwk.logout.di
 
 import com.maxxxwk.logout.data.LogoutRepositoryImpl
 import com.maxxxwk.logout.domain.LogoutRepository
-import dagger.Binds
-import dagger.Module
+import org.koin.dsl.module
 
-@Module
-internal interface RepositoriesModule {
-    @Binds
-    fun bindLogoutRepository(logoutRepositoryImpl: LogoutRepositoryImpl): LogoutRepository
+internal val repositoriesModule = module {
+    factory<LogoutRepository> { LogoutRepositoryImpl(get(), get(), get()) }
 }

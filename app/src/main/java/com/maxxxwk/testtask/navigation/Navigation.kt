@@ -19,16 +19,16 @@ import com.maxxxwk.init.api.InitScreenComponentHolder
 import com.maxxxwk.logout.api.LogoutScreenComponentHolder
 import com.maxxxwk.logout.api.LogoutScreenDependencies
 import com.maxxxwk.testtask.ui.components.BottomNavigationBar
-import javax.inject.Provider
+import org.koin.compose.koinInject
 
 @Suppress("LongMethod")
 @Composable
 fun Navigation(
     closeApp: () -> Unit,
-    authScreenDependenciesProvider: Provider<AuthScreenDependencies>,
-    logoutScreenDependenciesProvider: Provider<LogoutScreenDependencies>,
-    homeScreenDependenciesProvider: Provider<HomeScreenDependencies>,
-    catalogScreenDependenciesProvider: Provider<CatalogScreenDependencies>
+    authScreenDependencies: AuthScreenDependencies = koinInject(),
+    logoutScreenDependencies: LogoutScreenDependencies = koinInject(),
+    homeScreenDependencies: HomeScreenDependencies = koinInject(),
+    catalogScreenDependencies: CatalogScreenDependencies = koinInject()
 ) {
     val navController = rememberNavController()
     val bottomNavigationController = rememberBottomNavigationController(
@@ -36,11 +36,13 @@ fun Navigation(
         componentsInitializer = {
             when (it) {
                 BottomNavigationRoute.HOME -> HomeScreenComponentHolder.init(
-                    homeScreenDependenciesProvider.get()
+                    homeScreenDependencies
                 )
+
                 BottomNavigationRoute.BRANDS_CATALOG -> CatalogScreenComponentHolder.init(
-                    catalogScreenDependenciesProvider.get()
+                    catalogScreenDependencies
                 )
+
                 BottomNavigationRoute.COINS -> {}
                 BottomNavigationRoute.CUSTOMER_SERVICE -> {}
                 BottomNavigationRoute.SETTINGS -> {}
@@ -56,12 +58,12 @@ fun Navigation(
             InitScreenComponentHolder.getApi().Screen(
                 navigateToLoginScreen = {
                     navController.popBackStack()
-                    AuthScreenComponentHolder.init(authScreenDependenciesProvider.get())
+                    AuthScreenComponentHolder.init(authScreenDependencies)
                     navController.navigate(NavigationRoute.LOGIN.route)
                 },
                 navigateToMainScreen = {
                     navController.popBackStack()
-                    HomeScreenComponentHolder.init(homeScreenDependenciesProvider.get())
+                    HomeScreenComponentHolder.init(homeScreenDependencies)
                     navController.navigate(NavigationRoute.MAIN.route)
                 }
             )
@@ -71,7 +73,7 @@ fun Navigation(
             AuthScreenComponentHolder.getApi().Screen(
                 navigateToHomeScreen = {
                     navController.popBackStack()
-                    HomeScreenComponentHolder.init(homeScreenDependenciesProvider.get())
+                    HomeScreenComponentHolder.init(homeScreenDependencies)
                     navController.navigate(NavigationRoute.MAIN.route)
                 }
             )
@@ -83,7 +85,7 @@ fun Navigation(
             composable(BottomNavigationRoute.HOME.route) {
                 HomeScreenComponentHolder.getApi().Screen(
                     navigateToLogout = {
-                        LogoutScreenComponentHolder.init(logoutScreenDependenciesProvider.get())
+                        LogoutScreenComponentHolder.init(logoutScreenDependencies)
                         navController.navigate(NavigationRoute.LOGOUT.route)
                     },
                     navigateToCatalog = bottomNavigationController::navigateToBrandsCatalog,

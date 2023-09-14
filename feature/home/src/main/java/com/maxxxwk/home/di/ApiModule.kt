@@ -1,19 +1,15 @@
 package com.maxxxwk.home.di
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.maxxxwk.home.api.HomeScreenApi
+import com.maxxxwk.home.api.HomeScreenComponentHolder
 import com.maxxxwk.home.presentation.HomeScreen
-import com.maxxxwk.home.presentation.HomeScreenViewModel
-import com.maxxxwk.kotlin.di.scopes.FeatureScope
-import dagger.Module
-import dagger.Provides
+import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.KoinIsolatedContext
+import org.koin.dsl.module
 
-@Module
-internal class ApiModule {
-    @Provides
-    @FeatureScope
-    fun provideApi(homeScreenViewModel: HomeScreenViewModel): HomeScreenApi =
+internal val apiModule = module {
+    single<HomeScreenApi> {
         object : HomeScreenApi {
             @Composable
             override fun Screen(
@@ -21,12 +17,15 @@ internal class ApiModule {
                 navigateToCatalog: () -> Unit,
                 bottomBar: @Composable () -> Unit
             ) {
-                HomeScreen(
-                    viewModel = viewModel { homeScreenViewModel },
-                    navigateToLogout = navigateToLogout,
-                    navigateToCatalog = navigateToCatalog,
-                    bottomBar = bottomBar
-                )
+                KoinIsolatedContext(checkNotNull(HomeScreenComponentHolder.koinApp)) {
+                    HomeScreen(
+                        viewModel = koinViewModel(),
+                        navigateToLogout = navigateToLogout,
+                        navigateToCatalog = navigateToCatalog,
+                        bottomBar = bottomBar
+                    )
+                }
             }
         }
+    }
 }

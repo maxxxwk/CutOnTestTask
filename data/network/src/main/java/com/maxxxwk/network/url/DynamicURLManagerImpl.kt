@@ -1,10 +1,6 @@
 package com.maxxxwk.network.url
 
-import com.maxxxwk.kotlin.di.scopes.FeatureScope
-import javax.inject.Inject
-
-@FeatureScope
-internal class DynamicURLManagerImpl @Inject constructor(): DynamicURLManager {
+internal class DynamicURLManagerImpl : DynamicURLManager {
     private var url: String? = null
 
     override fun saveURL(url: String) {

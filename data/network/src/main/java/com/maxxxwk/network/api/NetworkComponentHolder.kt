@@ -1,29 +1,41 @@
 package com.maxxxwk.network.api
 
 import com.maxxxwk.kotlin.api.ComponentHolder
-import com.maxxxwk.network.di.DaggerNetworkComponent
-import com.maxxxwk.network.di.NetworkComponent
+import com.maxxxwk.network.di.apiModule
+import com.maxxxwk.network.di.networkModule
+import org.koin.core.KoinApplication
+import org.koin.dsl.koinApplication
+import org.koin.dsl.module
 
 object NetworkComponentHolder : ComponentHolder<NetworkDependencies, NetworkApi> {
-    private var component: NetworkComponent? = null
+
+    private var koinApp: KoinApplication? = null
 
     override fun init(dependencies: NetworkDependencies) {
-        if (component == null) {
+        if (koinApp == null) {
             synchronized(NetworkComponentHolder::class.java) {
-                if (component == null) {
-                    component = DaggerNetworkComponent.factory()
-                        .create(dependencies)
+                if (koinApp == null) {
+                    koinApp = koinApplication {
+                        modules(
+                            module {
+                                factory { dependencies.dispatchersProvider }
+                                factory { dependencies.authTokenProvider }
+                            },
+                            networkModule,
+                            apiModule
+                        )
+                    }
                 }
             }
         }
     }
 
     override fun getApi(): NetworkApi {
-        checkNotNull(component) { "NetworkComponent isn't initialised!" }
-        return component!!.api
+        checkNotNull(koinApp) { "NetworkComponent isn't initialised!" }
+        return koinApp!!.koin.get()
     }
 
     override fun reset() {
-        component = null
+        koinApp = null
     }
 }

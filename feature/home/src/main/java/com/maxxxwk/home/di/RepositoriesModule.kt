@@ -5,19 +5,11 @@ import com.maxxxwk.home.data.MenuItemsRepositoryImpl
 import com.maxxxwk.home.data.UserInfoRepositoryImpl
 import com.maxxxwk.home.domain.MenuItemsRepository
 import com.maxxxwk.home.domain.UserInfoRepository
-import com.maxxxwk.kotlin.di.qualifiers.Fake
-import dagger.Binds
-import dagger.Module
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
-@Module
-internal interface RepositoriesModule {
-    @Binds
-    fun bindMenuItemsRepository(menuItemsRepositoryImpl: MenuItemsRepositoryImpl): MenuItemsRepository
-
-    @Binds
-    @Fake
-    fun bindFakeMenuItemsRepository(fakeMenuItemsRepositoryImpl: FakeMenuItemsRepositoryImpl): MenuItemsRepository
-
-    @Binds
-    fun bindUserInfoRepository(userInfoRepositoryImpl: UserInfoRepositoryImpl): UserInfoRepository
+internal val repositoriesModule = module {
+    factory<MenuItemsRepository>(named("default")) { MenuItemsRepositoryImpl(get(), get()) }
+    factory<MenuItemsRepository>(named("fake")) { FakeMenuItemsRepositoryImpl(get()) }
+    factory<UserInfoRepository> { UserInfoRepositoryImpl(get(), get()) }
 }

@@ -6,11 +6,8 @@ import android.net.NetworkCapabilities
 import android.os.Build
 import com.maxxxwk.init.domain.NetworkState
 import com.maxxxwk.init.domain.NetworkStateRepository
-import javax.inject.Inject
 
-internal class NetworkStateRepositoryImpl @Inject constructor(
-    context: Context
-) : NetworkStateRepository {
+internal class NetworkStateRepositoryImpl(context: Context) : NetworkStateRepository {
 
     private val connectivityManager: ConnectivityManager =
         context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

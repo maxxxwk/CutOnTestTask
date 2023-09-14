@@ -3,7 +3,6 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
 }
 
 android {
@@ -32,8 +31,8 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.DAGGER)
-    kapt(KaptCompilers.DAGGER)
+    implementation(Libraries.KOIN_CORE)
+    implementation(Libraries.KOIN_ANDROID)
 
     implementation(Libraries.DATASTORE)
 

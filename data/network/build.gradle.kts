@@ -1,7 +1,6 @@
 plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
-    id("kotlin-kapt")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
@@ -10,8 +9,7 @@ java {
     targetCompatibility = JavaVersion.VERSION_18
 }
 dependencies {
-    implementation(Libraries.DAGGER)
-    kapt(KaptCompilers.DAGGER)
+    implementation(Libraries.KOIN_CORE)
 
     implementation(Libraries.KOTLINX_SERIALIZATION_JSON)
 

@@ -20,10 +20,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.maxxxwk.android.events.EventEffect
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.ui.components.CommonButton
 import com.maxxxwk.init.R
+import de.palm.composestateevents.EventEffect
 import kotlinx.coroutines.delay
 
 private const val DELAY_BEFORE_NAVIGATE = 200L

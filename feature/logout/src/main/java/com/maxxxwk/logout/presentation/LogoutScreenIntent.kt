@@ -3,8 +3,8 @@ package com.maxxxwk.logout.presentation
 import com.maxxxwk.android.text.UIText
 
 internal sealed interface LogoutScreenIntent {
-    object Logout : LogoutScreenIntent
-    object CloseApp : LogoutScreenIntent
+    data object Logout : LogoutScreenIntent
+    data object CloseApp : LogoutScreenIntent
     data class ShowError(val message: UIText) : LogoutScreenIntent
-    object ErrorShowed : LogoutScreenIntent
+    data object ErrorShowed : LogoutScreenIntent
 }

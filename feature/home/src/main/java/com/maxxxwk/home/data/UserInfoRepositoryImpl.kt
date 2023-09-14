@@ -1,13 +1,12 @@
 package com.maxxxwk.home.data
 
-import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.network.network.ApiService
 import com.maxxxwk.home.domain.UserInfo
 import com.maxxxwk.home.domain.UserInfoRepository
-import javax.inject.Inject
+import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
+import com.maxxxwk.network.network.ApiService
 import kotlinx.coroutines.withContext
 
-internal class UserInfoRepositoryImpl @Inject constructor(
+internal class UserInfoRepositoryImpl(
     private val apiService: ApiService,
     private val dispatchersProvider: DispatchersProvider
 ) : UserInfoRepository {

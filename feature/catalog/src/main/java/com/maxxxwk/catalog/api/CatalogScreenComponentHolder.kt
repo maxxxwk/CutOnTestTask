@@ -1,28 +1,44 @@
 package com.maxxxwk.catalog.api
 
-import com.maxxxwk.catalog.di.CatalogScreenComponent
-import com.maxxxwk.catalog.di.DaggerCatalogScreenComponent
+import com.maxxxwk.catalog.di.apiModule
+import com.maxxxwk.catalog.di.repositoriesModule
+import com.maxxxwk.catalog.di.viewModelModule
 import com.maxxxwk.kotlin.api.ComponentHolder
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.KoinApplication
+import org.koin.dsl.koinApplication
+import org.koin.dsl.module
 
 object CatalogScreenComponentHolder : ComponentHolder<CatalogScreenDependencies, CatalogScreenApi> {
-    private var component: CatalogScreenComponent? = null
+    internal var koinApp: KoinApplication? = null
 
     override fun init(dependencies: CatalogScreenDependencies) {
-        if (component == null) {
+        if (koinApp == null) {
             synchronized(CatalogScreenComponentHolder::class.java) {
-                if (component == null) {
-                    component = DaggerCatalogScreenComponent.factory().create(dependencies)
+                if (koinApp == null) {
+                    koinApp = koinApplication {
+                        androidLogger()
+                        modules(
+                            module {
+                                factory { dependencies.apiService }
+                                factory { dependencies.dispatchersProvider }
+                            },
+                            repositoriesModule,
+                            viewModelModule,
+                            apiModule
+                        )
+                    }
                 }
             }
         }
     }
 
     override fun getApi(): CatalogScreenApi {
-        requireNotNull(component) { "CatalogScreenComponent isn't initialised" }
-        return component!!.api
+        requireNotNull(koinApp) { "CatalogScreenComponent isn't initialised" }
+        return koinApp!!.koin.get()
     }
 
     override fun reset() {
-        component = null
+        koinApp = null
     }
 }

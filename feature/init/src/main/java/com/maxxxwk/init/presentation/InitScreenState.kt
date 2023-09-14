@@ -1,8 +1,8 @@
 package com.maxxxwk.init.presentation
 
-import com.maxxxwk.android.events.StateEvent
-import com.maxxxwk.android.events.consumed
 import com.maxxxwk.android.text.UIText
+import de.palm.composestateevents.StateEvent
+import de.palm.composestateevents.consumed
 
 internal data class InitScreenState(
     val errorMessage: UIText? = null,

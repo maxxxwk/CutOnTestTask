@@ -25,10 +25,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.maxxxwk.android.R
-import com.maxxxwk.android.events.EventEffect
-import com.maxxxwk.android.events.StateEventWithContent
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.ui.components.CommonButton
+import de.palm.composestateevents.EventEffect
+import de.palm.composestateevents.StateEventWithContent
 
 @Composable
 internal fun LogoutScreen(
@@ -61,6 +61,7 @@ internal fun LogoutScreen(
                 )
                 CircularProgressIndicator(color = MaterialTheme.colors.secondary)
             }
+
             is LogoutScreenState.Pending -> {
                 LogoutScreenPending(
                     errorEvent = (state as LogoutScreenState.Pending).errorEvent,

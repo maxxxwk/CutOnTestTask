@@ -1,13 +1,12 @@
 package com.maxxxwk.init.data
 
+import com.maxxxwk.init.domain.InitRepository
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.network.network.ApiService
-import com.maxxxwk.init.domain.InitRepository
 import com.maxxxwk.network.url.DynamicURLManager
-import javax.inject.Inject
 import kotlinx.coroutines.withContext
 
-internal class InitRepositoryImpl @Inject constructor(
+internal class InitRepositoryImpl(
     private val apiService: ApiService,
     private val urlManager: DynamicURLManager,
     private val dispatchersProvider: DispatchersProvider

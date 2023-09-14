@@ -4,49 +4,40 @@ import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFact
 import com.maxxxwk.network.auth.AuthInterceptor
 import com.maxxxwk.network.network.ApiService
 import com.maxxxwk.network.url.DynamicURLInterceptor
-import dagger.Module
-import dagger.Provides
+import com.maxxxwk.network.url.DynamicURLManager
+import com.maxxxwk.network.url.DynamicURLManagerImpl
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Converter
+import org.koin.core.module.dsl.factoryOf
+import org.koin.dsl.module
 import retrofit2.Retrofit
 
-@Module
-internal class NetworkModule {
-    @Provides
-    fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
-    }
-
-    @Provides
-    fun provideRetrofit(okHttpClient: OkHttpClient, converterFactory: Converter.Factory): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://cr-test-ribu2uaqea-ey.a.run.app/")
-            .client(okHttpClient)
-            .addConverterFactory(converterFactory)
-            .build()
-    }
-
-    @Provides
-    fun provideConverterFactory(): Converter.Factory {
-        val json = Json { ignoreUnknownKeys = true }
-        return json.asConverterFactory("application/json".toMediaType())
-    }
-
-    @Provides
-    fun provideOkHttpClient(
-        authInterceptor: AuthInterceptor,
-        urlInterceptor: DynamicURLInterceptor
-    ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(authInterceptor)
-            .addInterceptor(urlInterceptor)
+internal val networkModule = module {
+    single<DynamicURLManager> { DynamicURLManagerImpl() }
+    factoryOf(::AuthInterceptor)
+    factoryOf(::DynamicURLInterceptor)
+    factory {
+        OkHttpClient.Builder()
+            .addInterceptor(get<AuthInterceptor>())
+            .addInterceptor(get<DynamicURLInterceptor>())
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
                 }
             ).build()
     }
+    factory {
+        val json = Json { ignoreUnknownKeys = true }
+        json.asConverterFactory("application/json".toMediaType())
+    }
+    factory {
+        Retrofit.Builder()
+            .baseUrl("https://cr-test-ribu2uaqea-ey.a.run.app/")
+            .client(get())
+            .addConverterFactory(get())
+            .build()
+    }
+    factory { get<Retrofit>().create(ApiService::class.java) }
 }

@@ -5,7 +5,7 @@ object Versions {
     const val COMPOSE_KOTLIN_COMPILER_EXTENCION = "1.5.3"
 
     const val LIFECYCLE = "2.6.2"
-    const val DAGGER = "2.48"
+    const val KOIN = "3.5.0"
 }
 
 object BillsOfMaterials {
@@ -26,8 +26,6 @@ object Libraries {
 
     const val COIL = "io.coil-kt:coil-compose:2.4.0"
 
-    const val DAGGER = "com.google.dagger:dagger:${Versions.DAGGER}"
-
     const val KOTLINX_COLLECTIONS_IMMUTABLE = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
     const val KOTLINX_SERIALIZATION_JSON = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0"
 
@@ -40,12 +38,14 @@ object Libraries {
     const val COROUTINES_CORE = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
 
     const val DATASTORE = "androidx.datastore:datastore-preferences:1.0.0"
+
+    const val KOIN_CORE = "io.insert-koin:koin-core:${Versions.KOIN}"
+    const val KOIN_ANDROID = "io.insert-koin:koin-android:${Versions.KOIN}"
+    const val KOIN_COMPOSE = "io.insert-koin:koin-androidx-compose:${Versions.KOIN}"
+
+    const val COMPOSE_STATE_EVENTS = "com.github.leonard-palm:compose-state-events:2.0.3"
 }
 
 object DebugLibraries {
     const val COMPOSE_UI_TOOLING = "androidx.compose.ui:ui-tooling"
-}
-
-object KaptCompilers {
-    const val DAGGER = "com.google.dagger:dagger-compiler:${Versions.DAGGER}"
 }

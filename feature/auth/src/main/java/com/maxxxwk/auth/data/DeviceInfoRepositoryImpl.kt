@@ -3,9 +3,8 @@ package com.maxxxwk.auth.data
 import android.os.Build
 import com.maxxxwk.auth.domain.DeviceInfoRepository
 import com.maxxxwk.auth.domain.models.DeviceInfo
-import javax.inject.Inject
 
-internal class DeviceInfoRepositoryImpl @Inject constructor() : DeviceInfoRepository {
+internal class DeviceInfoRepositoryImpl : DeviceInfoRepository {
     override fun getDeviceInfo(): DeviceInfo {
         return DeviceInfo(
             devman = Build.MANUFACTURER,

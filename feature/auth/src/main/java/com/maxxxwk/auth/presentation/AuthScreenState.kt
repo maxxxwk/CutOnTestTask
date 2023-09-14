@@ -1,11 +1,11 @@
 package com.maxxxwk.auth.presentation
 
-import com.maxxxwk.android.events.StateEventWithContent
-import com.maxxxwk.android.events.consumed
 import com.maxxxwk.android.text.UIText
+import de.palm.composestateevents.StateEventWithContent
+import de.palm.composestateevents.consumed
 
 internal sealed interface AuthScreenState {
-    object Loading : AuthScreenState
+    data object Loading : AuthScreenState
     data class AuthForm(
         val login: UIText = UIText.DynamicText(""),
         val password: UIText = UIText.DynamicText(""),

@@ -1,29 +1,51 @@
 package com.maxxxwk.init.api
 
-import com.maxxxwk.init.di.DaggerInitScreenComponent
-import com.maxxxwk.init.di.InitScreenComponent
+import com.maxxxwk.init.di.apiModule
+import com.maxxxwk.init.di.repositoriesModule
+import com.maxxxwk.init.di.useCasesModule
+import com.maxxxwk.init.di.viewModelModule
 import com.maxxxwk.kotlin.api.ComponentHolder
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.KoinApplication
+import org.koin.dsl.koinApplication
+import org.koin.dsl.module
 
 object InitScreenComponentHolder : ComponentHolder<InitScreenDependencies, InitScreenApi> {
 
-    private var component: InitScreenComponent? = null
+    internal var koinApp: KoinApplication? = null
 
     override fun init(dependencies: InitScreenDependencies) {
-        if (component == null) {
-            synchronized(InitScreenComponent::class.java) {
-                if (component == null) {
-                    component = DaggerInitScreenComponent.factory().create(dependencies)
+        if (koinApp == null) {
+            synchronized(InitScreenComponentHolder::class.java) {
+                if (koinApp == null) {
+                    koinApp = koinApplication {
+                        androidContext(dependencies.context)
+                        androidLogger()
+                        modules(
+                            module {
+                                factory { dependencies.dispatchersProvider }
+                                factory { dependencies.authTokenManager }
+                                factory { dependencies.dynamicURLManager }
+                                factory { dependencies.apiService }
+                            },
+                            repositoriesModule,
+                            useCasesModule,
+                            viewModelModule,
+                            apiModule
+                        )
+                    }
                 }
             }
         }
     }
 
     override fun getApi(): InitScreenApi {
-        requireNotNull(component) { "InitScreenComponent isn't initialised!" }
-        return component!!.api
+        requireNotNull(koinApp) { "InitScreenComponent isn't initialised!" }
+        return koinApp!!.koin.get()
     }
 
     override fun reset() {
-        component = null
+        koinApp = null
     }
 }

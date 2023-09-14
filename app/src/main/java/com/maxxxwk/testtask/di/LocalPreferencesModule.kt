@@ -2,28 +2,20 @@ package com.maxxxwk.testtask.di
 
 import android.content.Context
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.local_preferences.auth.AuthTokenManager
 import com.maxxxwk.local_preferences.api.LocalPreferencesComponentHolder
 import com.maxxxwk.local_preferences.api.LocalPreferencesDependencies
-import dagger.Module
-import dagger.Provides
-import javax.inject.Singleton
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
 
-@Module
-class LocalPreferencesModule {
-    @Provides
-    @Singleton
-    fun provideAuthTokenManager(
-        dispatchersProvider: DispatchersProvider,
-        context: Context
-    ): AuthTokenManager {
+val localPreferencesModule = module {
+    single {
         LocalPreferencesComponentHolder.init(
             dependencies = object : LocalPreferencesDependencies {
-                override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-                override val context: Context = context
+                override val dispatchersProvider: DispatchersProvider = get()
+                override val context: Context = androidContext()
             }
         )
-        return LocalPreferencesComponentHolder.getApi().authTokenManager.also {
+        LocalPreferencesComponentHolder.getApi().authTokenManager.also {
             LocalPreferencesComponentHolder.reset()
         }
     }

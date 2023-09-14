@@ -1,26 +1,22 @@
 package com.maxxxwk.catalog.di
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.maxxxwk.catalog.api.CatalogScreenApi
+import com.maxxxwk.catalog.api.CatalogScreenComponentHolder
 import com.maxxxwk.catalog.presentation.CatalogScreen
-import com.maxxxwk.catalog.presentation.CatalogScreenViewModel
-import com.maxxxwk.kotlin.di.scopes.FeatureScope
-import dagger.Module
-import dagger.Provides
+import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.KoinIsolatedContext
+import org.koin.dsl.module
 
-@Module
-internal class ApiModule {
-    @Provides
-    @FeatureScope
-    fun provideApi(catalogScreenViewModel: CatalogScreenViewModel): CatalogScreenApi =
+internal val apiModule = module {
+    single<CatalogScreenApi> {
         object : CatalogScreenApi {
             @Composable
             override fun Screen(bottomBar: @Composable () -> Unit) {
-                CatalogScreen(
-                    viewModel = viewModel { catalogScreenViewModel },
-                    bottomBar = bottomBar
-                )
+                KoinIsolatedContext(checkNotNull(CatalogScreenComponentHolder.koinApp)) {
+                    CatalogScreen(viewModel = koinViewModel(), bottomBar = bottomBar)
+                }
             }
         }
+    }
 }

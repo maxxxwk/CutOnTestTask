@@ -1,12 +1,11 @@
 package com.maxxxwk.network.url
 
-import javax.inject.Inject
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.Interceptor
 import okhttp3.Response
 import retrofit2.Invocation
 
-internal class DynamicURLInterceptor @Inject constructor(private val dynamicURLManager: DynamicURLManager) :
+internal class DynamicURLInterceptor(private val dynamicURLManager: DynamicURLManager) :
     Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val isNeedDynamicURL = chain.request().tag(Invocation::class.java)?.method()

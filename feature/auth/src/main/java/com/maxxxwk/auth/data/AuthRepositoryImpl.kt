@@ -1,16 +1,15 @@
 package com.maxxxwk.auth.data
 
-import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.local_preferences.auth.AuthTokenManager
-import com.maxxxwk.network.network.ApiService
 import com.maxxxwk.auth.domain.AuthRepository
 import com.maxxxwk.auth.domain.models.Credentials
 import com.maxxxwk.auth.domain.models.DeviceInfo
-import javax.inject.Inject
+import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
+import com.maxxxwk.local_preferences.auth.AuthTokenManager
+import com.maxxxwk.network.network.ApiService
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-internal class AuthRepositoryImpl @Inject constructor(
+internal class AuthRepositoryImpl(
     private val tokenManager: AuthTokenManager,
     private val apiService: ApiService,
     private val dispatchersProvider: DispatchersProvider

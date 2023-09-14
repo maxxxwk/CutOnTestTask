@@ -2,25 +2,22 @@ package com.maxxxwk.init.presentation
 
 import androidx.lifecycle.viewModelScope
 import com.maxxxwk.android.R
-import com.maxxxwk.android.events.triggered
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.viewmodel.BaseViewModel
 import com.maxxxwk.init.domain.InitRepository
 import com.maxxxwk.init.domain.NetworkConnectionAvailabilityUseCase
 import com.maxxxwk.local_preferences.auth.AuthTokenManager
-import javax.inject.Inject
+import de.palm.composestateevents.triggered
 import kotlinx.coroutines.launch
 
-internal class InitScreenViewModel @Inject constructor(
+internal class InitScreenViewModel(
     private val initRepository: InitRepository,
     private val networkConnectionAvailabilityUseCase: NetworkConnectionAvailabilityUseCase,
     private val authTokenManager: AuthTokenManager
 ) : BaseViewModel<InitScreenState, InitScreenIntent>(InitScreenState()) {
 
     init {
-        viewModelScope.launch {
-            intents.send(InitScreenIntent.Init)
-        }
+        viewModelScope.launch { intents.send(InitScreenIntent.Init) }
     }
 
     override fun reduce(intent: InitScreenIntent): InitScreenState = when (intent) {
@@ -28,6 +25,7 @@ internal class InitScreenViewModel @Inject constructor(
             init()
             state.value.copy(errorMessage = null)
         }
+
         is InitScreenIntent.ShowError -> state.value.copy(errorMessage = intent.message)
         InitScreenIntent.NavigateToAuthScreen -> state.value.copy(navigateToAuthScreenEvent = triggered)
         InitScreenIntent.NavigateToMainScreen -> state.value.copy(navigateToMainScreenEvent = triggered)

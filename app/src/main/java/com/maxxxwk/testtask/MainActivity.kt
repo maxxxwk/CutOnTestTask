@@ -7,47 +7,31 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.maxxxwk.auth.api.AuthScreenDependencies
-import com.maxxxwk.catalog.api.CatalogScreenDependencies
-import com.maxxxwk.home.api.HomeScreenDependencies
 import com.maxxxwk.init.api.InitScreenComponentHolder
 import com.maxxxwk.init.api.InitScreenDependencies
-import com.maxxxwk.logout.api.LogoutScreenDependencies
 import com.maxxxwk.testtask.navigation.Navigation
 import com.maxxxwk.testtask.ui.theme.CutOnTheme
-import javax.inject.Inject
-import javax.inject.Provider
+import org.koin.android.ext.android.inject
+import org.koin.androidx.compose.KoinAndroidContext
+import org.koin.core.annotation.KoinExperimentalAPI
 
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var initScreenDependenciesProvider: Provider<InitScreenDependencies>
-    @Inject
-    lateinit var authScreenDependenciesProvider: Provider<AuthScreenDependencies>
-    @Inject
-    lateinit var logoutScreenDependenciesProvider: Provider<LogoutScreenDependencies>
-    @Inject
-    lateinit var homeScreenDependenciesProvider: Provider<HomeScreenDependencies>
-    @Inject
-    lateinit var catalogScreenDependenciesProvider: Provider<CatalogScreenDependencies>
+    private val initScreenDependencies by inject<InitScreenDependencies>()
 
+    @KoinExperimentalAPI
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as App).component.inject(this)
-        InitScreenComponentHolder.init(initScreenDependenciesProvider.get())
+        InitScreenComponentHolder.init(initScreenDependencies)
         setContent {
             CutOnTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.primary
                 ) {
-                    Navigation(
-                        closeApp = this::closeApp,
-                        authScreenDependenciesProvider = authScreenDependenciesProvider,
-                        logoutScreenDependenciesProvider = logoutScreenDependenciesProvider,
-                        homeScreenDependenciesProvider = homeScreenDependenciesProvider,
-                        catalogScreenDependenciesProvider = catalogScreenDependenciesProvider
-                    )
+                    KoinAndroidContext {
+                        Navigation(closeApp = this::closeApp)
+                    }
                 }
             }
         }

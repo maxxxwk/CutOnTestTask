@@ -6,20 +6,19 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.maxxxwk.kotlin.di.scopes.FeatureScope
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import javax.inject.Inject
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "preferences")
 
-@FeatureScope
-internal class AuthTokenManagerImpl @Inject constructor(
+internal class AuthTokenManagerImpl(
     private val context: Context,
     private val dispatchersProvider: DispatchersProvider
 ) : AuthTokenManager {
+
+    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "preferences")
+
     private val authTokenKey = stringPreferencesKey("auth_token")
     private var cachedToken: String = ""
 

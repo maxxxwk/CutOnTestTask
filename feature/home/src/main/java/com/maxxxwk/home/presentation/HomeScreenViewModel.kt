@@ -1,19 +1,17 @@
 package com.maxxxwk.home.presentation
 
 import androidx.lifecycle.viewModelScope
+import com.maxxxwk.android.R
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.viewmodel.BaseViewModel
-import com.maxxxwk.android.R
 import com.maxxxwk.home.domain.MenuItemsRepository
 import com.maxxxwk.home.domain.UserInfoRepository
-import com.maxxxwk.kotlin.di.qualifiers.Fake
-import javax.inject.Inject
 import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.launch
 
-internal class HomeScreenViewModel @Inject constructor(
+internal class HomeScreenViewModel(
     private val userInfoRepository: UserInfoRepository,
-    @Fake private val menuItemsRepository: MenuItemsRepository
+    private val menuItemsRepository: MenuItemsRepository
 ) : BaseViewModel<HomeScreenState, HomeScreenIntent>(HomeScreenState.Loading) {
 
     init {
@@ -37,6 +35,7 @@ internal class HomeScreenViewModel @Inject constructor(
             loadUserInfo()
             state.value
         }
+
         is HomeScreenIntent.ShowUserInfo -> (state.value as HomeScreenState.Content).copy(userInfo = intent.userInfo)
         is HomeScreenIntent.ShowError -> HomeScreenState.Error(intent.message)
         is HomeScreenIntent.ShowMenu -> HomeScreenState.Content(menuItems = intent.menuItems)

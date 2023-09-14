@@ -36,10 +36,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.maxxxwk.android.R
-import com.maxxxwk.android.events.EventEffect
 import com.maxxxwk.android.text.UIText
 import com.maxxxwk.android.ui.components.CommonButton
 import com.maxxxwk.auth.presentation.components.CredentialsTextField
+import de.palm.composestateevents.EventEffect
 
 @Composable
 internal fun AuthScreen(viewModel: AuthScreenViewModel, navigateToHomeScreen: () -> Unit) {

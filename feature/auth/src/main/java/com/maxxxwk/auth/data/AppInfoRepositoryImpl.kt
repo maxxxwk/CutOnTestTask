@@ -1,14 +1,13 @@
 package com.maxxxwk.auth.data
 
-import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
-import com.maxxxwk.network.network.ApiService
 import com.maxxxwk.auth.domain.AppInfoRepository
 import com.maxxxwk.auth.domain.models.AppInfo
 import com.maxxxwk.auth.domain.models.AppInfoMessageType
-import javax.inject.Inject
+import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
+import com.maxxxwk.network.network.ApiService
 import kotlinx.coroutines.withContext
 
-internal class AppInfoRepositoryImpl @Inject constructor(
+internal class AppInfoRepositoryImpl(
     private val apiService: ApiService,
     private val dispatchersProvider: DispatchersProvider
 ) : AppInfoRepository {

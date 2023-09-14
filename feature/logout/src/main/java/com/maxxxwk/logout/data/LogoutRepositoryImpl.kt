@@ -4,10 +4,9 @@ import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.local_preferences.auth.AuthTokenManager
 import com.maxxxwk.logout.domain.LogoutRepository
 import com.maxxxwk.network.network.ApiService
-import javax.inject.Inject
 import kotlinx.coroutines.withContext
 
-internal class LogoutRepositoryImpl @Inject constructor(
+internal class LogoutRepositoryImpl(
     private val apiService: ApiService,
     private val dispatchersProvider: DispatchersProvider,
     private val authTokenManager: AuthTokenManager

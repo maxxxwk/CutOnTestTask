@@ -1,9 +1,8 @@
 package com.maxxxwk.auth.domain
 
 import com.maxxxwk.auth.domain.models.Credentials
-import javax.inject.Inject
 
-internal class AuthUseCase @Inject constructor(
+internal class AuthUseCase(
     private val authRepository: AuthRepository,
     private val deviceInfoRepository: DeviceInfoRepository
 ) {

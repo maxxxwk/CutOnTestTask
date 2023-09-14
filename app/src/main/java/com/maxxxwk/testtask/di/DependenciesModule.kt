@@ -10,63 +10,43 @@ import com.maxxxwk.local_preferences.auth.AuthTokenManager
 import com.maxxxwk.logout.api.LogoutScreenDependencies
 import com.maxxxwk.network.network.ApiService
 import com.maxxxwk.network.url.DynamicURLManager
-import dagger.Module
-import dagger.Provides
+import org.koin.android.ext.koin.androidContext
+import org.koin.dsl.module
 
-@Module
-class DependenciesModule {
-    @Provides
-    fun provideInitScreenDependencies(
-        context: Context,
-        dispatchersProvider: DispatchersProvider,
-        apiService: ApiService,
-        authTokenManager: AuthTokenManager,
-        dynamicURLManager: DynamicURLManager
-    ) = object : InitScreenDependencies {
-        override val context: Context = context
-        override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-        override val apiService: ApiService = apiService
-        override val authTokenManager: AuthTokenManager = authTokenManager
-        override val dynamicURLManager: DynamicURLManager = dynamicURLManager
+val dependenciesModule = module {
+    factory<InitScreenDependencies> {
+        object : InitScreenDependencies {
+            override val context: Context = androidContext()
+            override val dispatchersProvider: DispatchersProvider = get()
+            override val apiService: ApiService = get()
+            override val authTokenManager: AuthTokenManager = get()
+            override val dynamicURLManager: DynamicURLManager = get()
+        }
     }
-
-    @Provides
-    fun provideAuthScreenDependencies(
-        dispatchersProvider: DispatchersProvider,
-        apiService: ApiService,
-        authTokenManager: AuthTokenManager
-    ) = object : AuthScreenDependencies {
-        override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-        override val apiService: ApiService = apiService
-        override val authTokenManager: AuthTokenManager = authTokenManager
+    factory<AuthScreenDependencies> {
+        object : AuthScreenDependencies {
+            override val dispatchersProvider: DispatchersProvider = get()
+            override val apiService: ApiService = get()
+            override val authTokenManager: AuthTokenManager = get()
+        }
     }
-
-    @Provides
-    fun provideLogoutScreenDependencies(
-        dispatchersProvider: DispatchersProvider,
-        apiService: ApiService,
-        authTokenManager: AuthTokenManager
-    ) = object : LogoutScreenDependencies {
-        override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-        override val apiService: ApiService = apiService
-        override val authTokenManager: AuthTokenManager = authTokenManager
+    factory<LogoutScreenDependencies> {
+        object : LogoutScreenDependencies {
+            override val dispatchersProvider: DispatchersProvider = get()
+            override val apiService: ApiService = get()
+            override val authTokenManager: AuthTokenManager = get()
+        }
     }
-
-    @Provides
-    fun provideHomeScreenDependencies(
-        dispatchersProvider: DispatchersProvider,
-        apiService: ApiService
-    ) = object : HomeScreenDependencies {
-        override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-        override val apiService: ApiService = apiService
+    factory<HomeScreenDependencies> {
+        object : HomeScreenDependencies {
+            override val dispatchersProvider: DispatchersProvider = get()
+            override val apiService: ApiService = get()
+        }
     }
-
-    @Provides
-    fun provideCatalogScreenDependencies(
-        dispatchersProvider: DispatchersProvider,
-        apiService: ApiService
-    ) = object : CatalogScreenDependencies {
-        override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-        override val apiService: ApiService = apiService
+    factory<CatalogScreenDependencies> {
+        object : CatalogScreenDependencies {
+            override val dispatchersProvider: DispatchersProvider = get()
+            override val apiService: ApiService = get()
+        }
     }
 }
