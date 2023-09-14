@@ -2,12 +2,12 @@ plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
     id("kotlin-kapt")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.20"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_18
+    targetCompatibility = JavaVersion.VERSION_18
 }
 dependencies {
     implementation(Libraries.DAGGER)

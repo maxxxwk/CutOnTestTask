@@ -2,12 +2,10 @@ package com.maxxxwk.testtask.di
 
 import com.maxxxwk.kotlin.dispatchers.DispatchersProvider
 import com.maxxxwk.local_preferences.auth.AuthTokenManager
-import com.maxxxwk.network.network.ApiService
-import com.maxxxwk.network.auth.AuthTokenProvider
-import com.maxxxwk.network.url.DynamicURLManager
 import com.maxxxwk.network.api.NetworkApi
 import com.maxxxwk.network.api.NetworkComponentHolder
 import com.maxxxwk.network.api.NetworkDependencies
+import com.maxxxwk.network.auth.AuthTokenProvider
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -29,15 +27,12 @@ class NetworkModule {
                     }
             }
         )
-        return NetworkComponentHolder.getApi().also {
-            NetworkComponentHolder.reset()
-        }
+        return NetworkComponentHolder.getApi().also { NetworkComponentHolder.reset() }
     }
 
     @Provides
-    fun provideApiService(networkApi: NetworkApi): ApiService = networkApi.apiService
+    fun provideApiService(networkApi: NetworkApi) = networkApi.apiService
 
     @Provides
-    fun provideDynamicURLManager(networkApi: NetworkApi): DynamicURLManager =
-        networkApi.dynamicURLManager
+    fun provideDynamicURLManager(networkApi: NetworkApi) = networkApi.dynamicURLManager
 }

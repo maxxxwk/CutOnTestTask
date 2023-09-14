@@ -22,7 +22,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
-import com.maxxxwk.catalog.api.CatalogScreenDependencies
 import com.maxxxwk.testtask.navigation.BottomNavigationController
 import com.maxxxwk.testtask.navigation.BottomNavigationRoute
 

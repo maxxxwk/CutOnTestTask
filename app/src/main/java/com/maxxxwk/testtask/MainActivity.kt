@@ -22,16 +22,12 @@ class MainActivity : ComponentActivity() {
 
     @Inject
     lateinit var initScreenDependenciesProvider: Provider<InitScreenDependencies>
-
     @Inject
     lateinit var authScreenDependenciesProvider: Provider<AuthScreenDependencies>
-
     @Inject
     lateinit var logoutScreenDependenciesProvider: Provider<LogoutScreenDependencies>
-
     @Inject
     lateinit var homeScreenDependenciesProvider: Provider<HomeScreenDependencies>
-
     @Inject
     lateinit var catalogScreenDependenciesProvider: Provider<CatalogScreenDependencies>
 
@@ -46,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.primary
                 ) {
                     Navigation(
-                        closeApp = { error("closed app") /* todo close app without error */ },
+                        closeApp = this::closeApp,
                         authScreenDependenciesProvider = authScreenDependenciesProvider,
                         logoutScreenDependenciesProvider = logoutScreenDependenciesProvider,
                         homeScreenDependenciesProvider = homeScreenDependenciesProvider,
@@ -55,5 +51,9 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun closeApp() {
+        error("closed app") /* todo close app without error */
     }
 }

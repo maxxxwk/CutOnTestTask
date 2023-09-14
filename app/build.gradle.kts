@@ -4,7 +4,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-    id("org.jetbrains.kotlin.plugin.serialization") version "1.8.20"
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "com.maxxxwk.testtask"
         minSdk = Versions.MIN_SDK
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -27,7 +27,8 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -35,11 +36,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
     }
-    kotlinOptions.jvmTarget = "1.8"
-    buildFeatures.compose = true
+    kotlinOptions.jvmTarget = "18"
+    buildFeatures {
+        compose = true
+        buildConfig = true
+    }
     composeOptions.kotlinCompilerExtensionVersion = Versions.COMPOSE_KOTLIN_COMPILER_EXTENCION
     packagingOptions.resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
 }

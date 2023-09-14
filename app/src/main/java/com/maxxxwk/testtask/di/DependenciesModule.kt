@@ -22,14 +22,12 @@ class DependenciesModule {
         apiService: ApiService,
         authTokenManager: AuthTokenManager,
         dynamicURLManager: DynamicURLManager
-    ): InitScreenDependencies {
-        return object : InitScreenDependencies {
-            override val context: Context = context
-            override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-            override val apiService: ApiService = apiService
-            override val authTokenManager: AuthTokenManager = authTokenManager
-            override val dynamicURLManager: DynamicURLManager = dynamicURLManager
-        }
+    ) = object : InitScreenDependencies {
+        override val context: Context = context
+        override val dispatchersProvider: DispatchersProvider = dispatchersProvider
+        override val apiService: ApiService = apiService
+        override val authTokenManager: AuthTokenManager = authTokenManager
+        override val dynamicURLManager: DynamicURLManager = dynamicURLManager
     }
 
     @Provides
@@ -37,12 +35,10 @@ class DependenciesModule {
         dispatchersProvider: DispatchersProvider,
         apiService: ApiService,
         authTokenManager: AuthTokenManager
-    ): AuthScreenDependencies {
-        return object : AuthScreenDependencies {
-            override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-            override val apiService: ApiService = apiService
-            override val authTokenManager: AuthTokenManager = authTokenManager
-        }
+    ) = object : AuthScreenDependencies {
+        override val dispatchersProvider: DispatchersProvider = dispatchersProvider
+        override val apiService: ApiService = apiService
+        override val authTokenManager: AuthTokenManager = authTokenManager
     }
 
     @Provides
@@ -50,33 +46,27 @@ class DependenciesModule {
         dispatchersProvider: DispatchersProvider,
         apiService: ApiService,
         authTokenManager: AuthTokenManager
-    ): LogoutScreenDependencies {
-        return object : LogoutScreenDependencies {
-            override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-            override val apiService: ApiService = apiService
-            override val authTokenManager: AuthTokenManager = authTokenManager
-        }
+    ) = object : LogoutScreenDependencies {
+        override val dispatchersProvider: DispatchersProvider = dispatchersProvider
+        override val apiService: ApiService = apiService
+        override val authTokenManager: AuthTokenManager = authTokenManager
     }
 
     @Provides
     fun provideHomeScreenDependencies(
         dispatchersProvider: DispatchersProvider,
         apiService: ApiService
-    ): HomeScreenDependencies {
-        return object : HomeScreenDependencies {
-            override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-            override val apiService: ApiService = apiService
-        }
+    ) = object : HomeScreenDependencies {
+        override val dispatchersProvider: DispatchersProvider = dispatchersProvider
+        override val apiService: ApiService = apiService
     }
 
     @Provides
     fun provideCatalogScreenDependencies(
         dispatchersProvider: DispatchersProvider,
         apiService: ApiService
-    ): CatalogScreenDependencies {
-        return object : CatalogScreenDependencies {
-            override val dispatchersProvider: DispatchersProvider = dispatchersProvider
-            override val apiService: ApiService = apiService
-        }
+    ) = object : CatalogScreenDependencies {
+        override val dispatchersProvider: DispatchersProvider = dispatchersProvider
+        override val apiService: ApiService = apiService
     }
 }
